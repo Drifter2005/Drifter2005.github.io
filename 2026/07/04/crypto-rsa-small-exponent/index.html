@@ -4,19 +4,24 @@
   <meta charset="utf-8">
   
   
-  <title>归档 | Drifter Observatory</title>
+  <title>Crypto观测笔记：RSA小指数与广播攻击 | Drifter Observatory</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="theme-color" content="#06111f">
   <meta name="description" content="Drifter2005 的个人技术博客，记录算法训练、CTF 复盘、密码学与安全工程思考。">
-  <meta name="description" content="Drifter2005 的个人技术博客，记录算法训练、CTF 复盘、密码学与安全工程思考。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Drifter Observatory">
-<meta property="og:url" content="https://drifter2005.github.io/archives/index.html">
+  <meta name="description" content="RSA 的安全性依赖大整数分解困难，但 CTF 题目常常不会直接让你分解 n，而是通过错误参数、重复消息或填充缺失制造侧信道。 小指数风险当 e &#x3D; 3 且明文 m 很小，如果没有填充，可能出现： 12c &#x3D; m^3 mod nm^3 &lt; n  此时模运算没有真正发生，直接对 c 开三次方即可得到 m。 广播攻击如果同一个明文使用相同小指数 e &#x3D; 3 加密给三个不同模数，且模数两两互素，可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Crypto观测笔记：RSA小指数与广播攻击">
+<meta property="og:url" content="https://drifter2005.github.io/2026/07/04/crypto-rsa-small-exponent/index.html">
 <meta property="og:site_name" content="Drifter Observatory">
-<meta property="og:description" content="Drifter2005 的个人技术博客，记录算法训练、CTF 复盘、密码学与安全工程思考。">
+<meta property="og:description" content="RSA 的安全性依赖大整数分解困难，但 CTF 题目常常不会直接让你分解 n，而是通过错误参数、重复消息或填充缺失制造侧信道。 小指数风险当 e &#x3D; 3 且明文 m 很小，如果没有填充，可能出现： 12c &#x3D; m^3 mod nm^3 &lt; n  此时模运算没有真正发生，直接对 c 开三次方即可得到 m。 广播攻击如果同一个明文使用相同小指数 e &#x3D; 3 加密给三个不同模数，且模数两两互素，可">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-04T12:40:00.000Z">
+<meta property="article:modified_time" content="2026-07-04T15:29:33.605Z">
 <meta property="article:author" content="Drifter2005">
-<meta property="article:tag" content="algorithm, CTF, cybersecurity, cryptography, reverse engineering, pwn, data structures">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Crypto">
+<meta property="article:tag" content="RSA">
+<meta property="article:tag" content="number-theory">
 <meta name="twitter:card" content="summary">
   
   
@@ -98,115 +103,83 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2026" class="archive-year">2026</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/07/04/reverse-engineering-first-pass/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-07-04T13:00:00.000Z" itemprop="datePublished">7月 4</time>
+        <section id="main"><article id="post-crypto-rsa-small-exponent" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <span class="article-signal">OBSERVATION</span>
+    <a href="/2026/07/04/crypto-rsa-small-exponent/" class="article-date">
+  <time class="dt-published" datetime="2026-07-04T12:40:00.000Z" itemprop="datePublished">2026-07-04</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2026/07/04/reverse-engineering-first-pass/">Reverse入门巡天：从字符串到控制流</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      Crypto观测笔记：RSA小指数与广播攻击
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/07/04/crypto-rsa-small-exponent/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-07-04T12:40:00.000Z" itemprop="datePublished">7月 4</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2026/07/04/crypto-rsa-small-exponent/">Crypto观测笔记：RSA小指数与广播攻击</a>
-    </h1>
-  
+        <p>RSA 的安全性依赖大整数分解困难，但 CTF 题目常常不会直接让你分解 <code>n</code>，而是通过错误参数、重复消息或填充缺失制造侧信道。</p>
+<h2 id="小指数风险"><a href="#小指数风险" class="headerlink" title="小指数风险"></a>小指数风险</h2><p>当 <code>e = 3</code> 且明文 <code>m</code> 很小，如果没有填充，可能出现：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c = m^3 mod n</span><br><span class="line">m^3 &lt; n</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/07/04/ctf-web-sql-injection/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-07-04T12:25:00.000Z" itemprop="datePublished">7月 4</time>
-</a>
+<p>此时模运算没有真正发生，直接对 <code>c</code> 开三次方即可得到 <code>m</code>。</p>
+<h2 id="广播攻击"><a href="#广播攻击" class="headerlink" title="广播攻击"></a>广播攻击</h2><p>如果同一个明文使用相同小指数 <code>e = 3</code> 加密给三个不同模数，且模数两两互素，可以用中国剩余定理恢复 <code>m^3</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line"></span><br><span class="line">M = crt([n1, n2, n3], [c1, c2, c3])</span><br><span class="line">m = integer_nthroot(M, <span class="number">3</span>)[<span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(m))</span><br></pre></td></tr></table></figure>
+
+<h2 id="复盘清单"><a href="#复盘清单" class="headerlink" title="复盘清单"></a>复盘清单</h2><ul>
+<li>检查 <code>e</code> 是否过小，尤其是 <code>3</code>、<code>5</code>、<code>17</code>。</li>
+<li>检查是否多组密文对应同一明文。</li>
+<li>检查不同 <code>n</code> 是否存在公共因子：<code>gcd(n1, n2) &gt; 1</code>。</li>
+<li>检查是否缺少 OAEP 等安全填充。</li>
+</ul>
+<p>密码学题目最迷人的地方在于它的严谨性：每一个漏洞都对应一个被破坏的数学前提。</p>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2026/07/04/ctf-web-sql-injection/">CTF Web复盘：SQL注入从异常回显到稳定利用</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/07/04/algorithm-graph-search/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-07-04T12:10:00.000Z" itemprop="datePublished">7月 4</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://drifter2005.github.io/2026/07/04/crypto-rsa-small-exponent/" data-id="cuidZRCgsSInfmt61juerbL1v" data-title="Crypto观测笔记：RSA小指数与广播攻击" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2026/07/04/algorithm-graph-search/">图搜索观测笔记：BFS、Dijkstra 与状态空间</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/observatory-manifesto/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-05-22T11:30:00.000Z" itemprop="datePublished">5月 22</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/observatory-manifesto/">观测日志：算法与CTF的星图</a>
-    </h1>
-  
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RSA/" rel="tag">RSA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/number-theory/" rel="tag">number-theory</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2026/07/04/reverse-engineering-first-pass/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Reverse入门巡天：从字符串到控制流
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2026/07/04/ctf-web-sql-injection/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">CTF Web复盘：SQL注入从异常回显到稳定利用</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>

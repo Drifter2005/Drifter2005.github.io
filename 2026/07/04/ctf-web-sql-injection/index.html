@@ -4,19 +4,24 @@
   <meta charset="utf-8">
   
   
-  <title>归档 | Drifter Observatory</title>
+  <title>CTF Web复盘：SQL注入从异常回显到稳定利用 | Drifter Observatory</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="theme-color" content="#06111f">
   <meta name="description" content="Drifter2005 的个人技术博客，记录算法训练、CTF 复盘、密码学与安全工程思考。">
-  <meta name="description" content="Drifter2005 的个人技术博客，记录算法训练、CTF 复盘、密码学与安全工程思考。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Drifter Observatory">
-<meta property="og:url" content="https://drifter2005.github.io/archives/index.html">
+  <meta name="description" content="SQL 注入的本质，是用户输入被拼接进查询语义，导致数据和指令边界坍塌。CTF 中我们追求拿 flag，但复盘时更重要的是理解漏洞如何出现、如何验证、如何修复。 观测异常常见入口包括登录框、搜索框、文章 ID、排序参数和 Cookie。第一步不是直接上大 payload，而是做最小扰动： 12341&#x27;1&quot;1 and 1&#x3D;11 and 1&#x3D;2  如果页面出现数据库错误、结果数量变">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF Web复盘：SQL注入从异常回显到稳定利用">
+<meta property="og:url" content="https://drifter2005.github.io/2026/07/04/ctf-web-sql-injection/index.html">
 <meta property="og:site_name" content="Drifter Observatory">
-<meta property="og:description" content="Drifter2005 的个人技术博客，记录算法训练、CTF 复盘、密码学与安全工程思考。">
+<meta property="og:description" content="SQL 注入的本质，是用户输入被拼接进查询语义，导致数据和指令边界坍塌。CTF 中我们追求拿 flag，但复盘时更重要的是理解漏洞如何出现、如何验证、如何修复。 观测异常常见入口包括登录框、搜索框、文章 ID、排序参数和 Cookie。第一步不是直接上大 payload，而是做最小扰动： 12341&#x27;1&quot;1 and 1&#x3D;11 and 1&#x3D;2  如果页面出现数据库错误、结果数量变">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-04T12:25:00.000Z">
+<meta property="article:modified_time" content="2026-07-04T15:29:33.605Z">
 <meta property="article:author" content="Drifter2005">
-<meta property="article:tag" content="algorithm, CTF, cybersecurity, cryptography, reverse engineering, pwn, data structures">
+<meta property="article:tag" content="SQLi">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="payload">
+<meta property="article:tag" content="security">
 <meta name="twitter:card" content="summary">
   
   
@@ -98,115 +103,104 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2026" class="archive-year">2026</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/07/04/reverse-engineering-first-pass/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-07-04T13:00:00.000Z" itemprop="datePublished">7月 4</time>
+        <section id="main"><article id="post-ctf-web-sql-injection" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <span class="article-signal">OBSERVATION</span>
+    <a href="/2026/07/04/ctf-web-sql-injection/" class="article-date">
+  <time class="dt-published" datetime="2026-07-04T12:25:00.000Z" itemprop="datePublished">2026-07-04</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2026/07/04/reverse-engineering-first-pass/">Reverse入门巡天：从字符串到控制流</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      CTF Web复盘：SQL注入从异常回显到稳定利用
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/07/04/crypto-rsa-small-exponent/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-07-04T12:40:00.000Z" itemprop="datePublished">7月 4</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2026/07/04/crypto-rsa-small-exponent/">Crypto观测笔记：RSA小指数与广播攻击</a>
-    </h1>
-  
+        <p>SQL 注入的本质，是用户输入被拼接进查询语义，导致数据和指令边界坍塌。CTF 中我们追求拿 flag，但复盘时更重要的是理解漏洞如何出现、如何验证、如何修复。</p>
+<h2 id="观测异常"><a href="#观测异常" class="headerlink" title="观测异常"></a>观测异常</h2><p>常见入口包括登录框、搜索框、文章 ID、排序参数和 Cookie。第一步不是直接上大 payload，而是做最小扰动：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;</span><br><span class="line">1&quot;</span><br><span class="line">1 and 1=1</span><br><span class="line">1 and 1=2</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/07/04/ctf-web-sql-injection/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-07-04T12:25:00.000Z" itemprop="datePublished">7月 4</time>
-</a>
+<p>如果页面出现数据库错误、结果数量变化或响应时间异常，就说明输入可能影响了查询结构。</p>
+<h2 id="判断列数与回显位"><a href="#判断列数与回显位" class="headerlink" title="判断列数与回显位"></a>判断列数与回显位</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?id=1 order by 1</span><br><span class="line">?id=1 order by 2</span><br><span class="line">?id=-1 union select 1,2,3</span><br></pre></td></tr></table></figure>
+
+<p>当 <code>order by n</code> 报错时，列数通常小于 <code>n</code>。<code>union select</code> 的可见数字位置就是回显位。</p>
+<h2 id="信息枚举路径"><a href="#信息枚举路径" class="headerlink" title="信息枚举路径"></a>信息枚举路径</h2><p>以 MySQL 为例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">database()</span><br><span class="line">version()</span><br><span class="line">group_concat(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span>database()</span><br><span class="line">group_concat(column_name) <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name<span class="operator">=</span><span class="string">&#x27;flag&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="防御视角"><a href="#防御视角" class="headerlink" title="防御视角"></a>防御视角</h2><table>
+<thead>
+<tr>
+<th>风险点</th>
+<th>防御方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>字符串拼接 SQL</td>
+<td>使用参数化查询或 ORM 绑定变量</td>
+</tr>
+<tr>
+<td>错误信息暴露</td>
+<td>生产环境关闭详细数据库错误</td>
+</tr>
+<tr>
+<td>权限过大</td>
+<td>数据库账户最小权限</td>
+</tr>
+<tr>
+<td>输入无约束</td>
+<td>类型校验、白名单、长度限制</td>
+</tr>
+</tbody></table>
+<p>一次好的 CTF 复盘，不只是保存 payload，而是写清楚“为什么这个输入改变了查询语义”。这样下一次遇到过滤、盲注或二次注入时，我们仍然能从原理出发。</p>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2026/07/04/ctf-web-sql-injection/">CTF Web复盘：SQL注入从异常回显到稳定利用</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/07/04/algorithm-graph-search/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-07-04T12:10:00.000Z" itemprop="datePublished">7月 4</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://drifter2005.github.io/2026/07/04/ctf-web-sql-injection/" data-id="cuidHmlyBZyDLQkT81UKffAyP" data-title="CTF Web复盘：SQL注入从异常回显到稳定利用" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2026/07/04/algorithm-graph-search/">图搜索观测笔记：BFS、Dijkstra 与状态空间</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/observatory-manifesto/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-05-22T11:30:00.000Z" itemprop="datePublished">5月 22</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/observatory-manifesto/">观测日志：算法与CTF的星图</a>
-    </h1>
-  
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQLi/" rel="tag">SQLi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/payload/" rel="tag">payload</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/security/" rel="tag">security</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2026/07/04/crypto-rsa-small-exponent/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Crypto观测笔记：RSA小指数与广播攻击
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2026/07/04/algorithm-graph-search/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">图搜索观测笔记：BFS、Dijkstra 与状态空间</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>

@@ -4,19 +4,24 @@
   <meta charset="utf-8">
   
   
-  <title>归档 | Drifter Observatory</title>
+  <title>Reverse入门巡天：从字符串到控制流 | Drifter Observatory</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="theme-color" content="#06111f">
   <meta name="description" content="Drifter2005 的个人技术博客，记录算法训练、CTF 复盘、密码学与安全工程思考。">
-  <meta name="description" content="Drifter2005 的个人技术博客，记录算法训练、CTF 复盘、密码学与安全工程思考。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Drifter Observatory">
-<meta property="og:url" content="https://drifter2005.github.io/archives/index.html">
+  <meta name="description" content="逆向分析不要急着“看懂全部”。更稳的方式是像天文观测一样分层扫描：先找明亮信号，再建立坐标系，最后锁定关键路径。 第一轮：静态信号123file .&#x2F;challengestrings -a .&#x2F;challenge | lesschecksec .&#x2F;challenge  关注内容：  是否有 flag、wrong、success 等提示字符串。 是否启用 PIE、Canary、NX、RELRO。 是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reverse入门巡天：从字符串到控制流">
+<meta property="og:url" content="https://drifter2005.github.io/2026/07/04/reverse-engineering-first-pass/index.html">
 <meta property="og:site_name" content="Drifter Observatory">
-<meta property="og:description" content="Drifter2005 的个人技术博客，记录算法训练、CTF 复盘、密码学与安全工程思考。">
+<meta property="og:description" content="逆向分析不要急着“看懂全部”。更稳的方式是像天文观测一样分层扫描：先找明亮信号，再建立坐标系，最后锁定关键路径。 第一轮：静态信号123file .&#x2F;challengestrings -a .&#x2F;challenge | lesschecksec .&#x2F;challenge  关注内容：  是否有 flag、wrong、success 等提示字符串。 是否启用 PIE、Canary、NX、RELRO。 是">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-04T13:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-04T15:29:33.606Z">
 <meta property="article:author" content="Drifter2005">
-<meta property="article:tag" content="algorithm, CTF, cybersecurity, cryptography, reverse engineering, pwn, data structures">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Reverse">
+<meta property="article:tag" content="binary">
+<meta property="article:tag" content="debugging">
 <meta name="twitter:card" content="summary">
   
   
@@ -98,115 +103,102 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2026" class="archive-year">2026</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/07/04/reverse-engineering-first-pass/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-07-04T13:00:00.000Z" itemprop="datePublished">7月 4</time>
+        <section id="main"><article id="post-reverse-engineering-first-pass" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <span class="article-signal">OBSERVATION</span>
+    <a href="/2026/07/04/reverse-engineering-first-pass/" class="article-date">
+  <time class="dt-published" datetime="2026-07-04T13:00:00.000Z" itemprop="datePublished">2026-07-04</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2026/07/04/reverse-engineering-first-pass/">Reverse入门巡天：从字符串到控制流</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      Reverse入门巡天：从字符串到控制流
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/07/04/crypto-rsa-small-exponent/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-07-04T12:40:00.000Z" itemprop="datePublished">7月 4</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2026/07/04/crypto-rsa-small-exponent/">Crypto观测笔记：RSA小指数与广播攻击</a>
-    </h1>
-  
+        <p>逆向分析不要急着“看懂全部”。更稳的方式是像天文观测一样分层扫描：先找明亮信号，再建立坐标系，最后锁定关键路径。</p>
+<h2 id="第一轮：静态信号"><a href="#第一轮：静态信号" class="headerlink" title="第一轮：静态信号"></a>第一轮：静态信号</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file ./challenge</span><br><span class="line">strings -a ./challenge | less</span><br><span class="line">checksec ./challenge</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/07/04/ctf-web-sql-injection/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-07-04T12:25:00.000Z" itemprop="datePublished">7月 4</time>
-</a>
+<p>关注内容：</p>
+<ul>
+<li>是否有 <code>flag</code>、<code>wrong</code>、<code>success</code> 等提示字符串。</li>
+<li>是否启用 PIE、Canary、NX、RELRO。</li>
+<li>是否存在压缩壳、混淆或异常节区。</li>
+</ul>
+<h2 id="第二轮：函数与分支"><a href="#第二轮：函数与分支" class="headerlink" title="第二轮：函数与分支"></a>第二轮：函数与分支</h2><p>在 IDA、Ghidra 或 Binary Ninja 中，优先定位：</p>
+<ul>
+<li><code>main</code>、<code>check</code>、<code>verify</code>、<code>decrypt</code> 等语义函数。</li>
+<li>字符串交叉引用。</li>
+<li>输入长度检查、循环、异或、查表和哈希比较。</li>
+</ul>
+<h2 id="第三轮：动态验证"><a href="#第三轮：动态验证" class="headerlink" title="第三轮：动态验证"></a>第三轮：动态验证</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">b *main</span><br><span class="line">run</span><br><span class="line">ni</span><br><span class="line">x/s $rdi</span><br><span class="line">p/x $rax</span><br></pre></td></tr></table></figure>
+
+<p>动态调试的价值不是替代静态分析，而是验证假设。每次断点都应该回答一个具体问题：输入在哪里？如何变换？在哪里比较？失败分支在哪里？</p>
+<h2 id="复盘模板"><a href="#复盘模板" class="headerlink" title="复盘模板"></a>复盘模板</h2><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>记录内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>样本信息</td>
+<td>架构、保护、哈希、运行参数</td>
+</tr>
+<tr>
+<td>关键函数</td>
+<td>输入、变换、比较、输出</td>
+</tr>
+<tr>
+<td>解题路径</td>
+<td>静态依据、动态证据、脚本</td>
+</tr>
+<tr>
+<td>防护思考</td>
+<td>混淆、反调试、边界检查</td>
+</tr>
+</tbody></table>
+<p>逆向的终点不是“猜出 flag”，而是把二进制的行为还原成清晰、可解释、可复现的模型。</p>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2026/07/04/ctf-web-sql-injection/">CTF Web复盘：SQL注入从异常回显到稳定利用</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/07/04/algorithm-graph-search/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-07-04T12:10:00.000Z" itemprop="datePublished">7月 4</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://drifter2005.github.io/2026/07/04/reverse-engineering-first-pass/" data-id="cuidWZdawYuZpJyjagyy9uxvn" data-title="Reverse入门巡天：从字符串到控制流" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2026/07/04/algorithm-graph-search/">图搜索观测笔记：BFS、Dijkstra 与状态空间</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/observatory-manifesto/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-05-22T11:30:00.000Z" itemprop="datePublished">5月 22</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/observatory-manifesto/">观测日志：算法与CTF的星图</a>
-    </h1>
-  
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reverse/" rel="tag">Reverse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/binary/" rel="tag">binary</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/debugging/" rel="tag">debugging</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2026/07/04/crypto-rsa-small-exponent/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Crypto观测笔记：RSA小指数与广播攻击</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>
