@@ -177,7 +177,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://drifter2005.github.io/2026/07/23/suanfati/" data-id="cuidhvKt8dU9iiyrmphjdEQXb" data-title="算法题记录" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://drifter2005.github.io/2026/07/23/suanfati/" data-id="cuidCmuRvARejqQOc-aR87I5Y" data-title="算法题记录" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -265,7 +265,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://drifter2005.github.io/2026/07/04/reverse-engineering-first-pass/" data-id="cuidL-f5ML8Gnl4tLzdzqpzbL" data-title="Reverse入门巡天：从字符串到控制流" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://drifter2005.github.io/2026/07/04/reverse-engineering-first-pass/" data-id="cuidq8XH-KdJtUWMXqEWbO1vg" data-title="Reverse入门巡天：从字符串到控制流" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -325,92 +325,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://drifter2005.github.io/2026/07/04/crypto-rsa-small-exponent/" data-id="cuidmfoeVu3kgRhEVYmkkbgZK" data-title="Crypto观测笔记：RSA小指数与广播攻击" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://drifter2005.github.io/2026/07/04/crypto-rsa-small-exponent/" data-id="cuidTI5vKxVFiCUNw08pkMRHV" data-title="Crypto观测笔记：RSA小指数与广播攻击" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RSA/" rel="tag">RSA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/number-theory/" rel="tag">number-theory</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-ctf-web-sql-injection" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <span class="article-signal">OBSERVATION</span>
-    <a href="/2026/07/04/ctf-web-sql-injection/" class="article-date">
-  <time class="dt-published" datetime="2026-07-04T12:25:00.000Z" itemprop="datePublished">2026-07-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/CTF/">CTF</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2026/07/04/ctf-web-sql-injection/">CTF Web复盘：SQL注入从异常回显到稳定利用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>SQL 注入的本质，是用户输入被拼接进查询语义，导致数据和指令边界坍塌。CTF 中我们追求拿 flag，但复盘时更重要的是理解漏洞如何出现、如何验证、如何修复。</p>
-<h2 id="观测异常"><a href="#观测异常" class="headerlink" title="观测异常"></a>观测异常</h2><p>常见入口包括登录框、搜索框、文章 ID、排序参数和 Cookie。第一步不是直接上大 payload，而是做最小扰动：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;</span><br><span class="line">1&quot;</span><br><span class="line">1 and 1=1</span><br><span class="line">1 and 1=2</span><br></pre></td></tr></table></figure>
-
-<p>如果页面出现数据库错误、结果数量变化或响应时间异常，就说明输入可能影响了查询结构。</p>
-<h2 id="判断列数与回显位"><a href="#判断列数与回显位" class="headerlink" title="判断列数与回显位"></a>判断列数与回显位</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?id=1 order by 1</span><br><span class="line">?id=1 order by 2</span><br><span class="line">?id=-1 union select 1,2,3</span><br></pre></td></tr></table></figure>
-
-<p>当 <code>order by n</code> 报错时，列数通常小于 <code>n</code>。<code>union select</code> 的可见数字位置就是回显位。</p>
-<h2 id="信息枚举路径"><a href="#信息枚举路径" class="headerlink" title="信息枚举路径"></a>信息枚举路径</h2><p>以 MySQL 为例：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">database()</span><br><span class="line">version()</span><br><span class="line">group_concat(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span>database()</span><br><span class="line">group_concat(column_name) <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name<span class="operator">=</span><span class="string">&#x27;flag&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="防御视角"><a href="#防御视角" class="headerlink" title="防御视角"></a>防御视角</h2><table>
-<thead>
-<tr>
-<th>风险点</th>
-<th>防御方式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>字符串拼接 SQL</td>
-<td>使用参数化查询或 ORM 绑定变量</td>
-</tr>
-<tr>
-<td>错误信息暴露</td>
-<td>生产环境关闭详细数据库错误</td>
-</tr>
-<tr>
-<td>权限过大</td>
-<td>数据库账户最小权限</td>
-</tr>
-<tr>
-<td>输入无约束</td>
-<td>类型校验、白名单、长度限制</td>
-</tr>
-</tbody></table>
-<p>一次好的 CTF 复盘，不只是保存 payload，而是写清楚“为什么这个输入改变了查询语义”。这样下一次遇到过滤、盲注或二次注入时，我们仍然能从原理出发。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://drifter2005.github.io/2026/07/04/ctf-web-sql-injection/" data-id="cuid0AKLTv8tuikYhrsZQuu-8" data-title="CTF Web复盘：SQL注入从异常回显到稳定利用" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQLi/" rel="tag">SQLi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/payload/" rel="tag">payload</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/security/" rel="tag">security</a></li></ul>
 
     </footer>
   </div>
@@ -494,11 +413,91 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://drifter2005.github.io/2026/07/04/algorithm-graph-search/" data-id="cuidNXtZCQuM2t3IVAY1XTCwN" data-title="图搜索观测笔记：BFS、Dijkstra 与状态空间" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://drifter2005.github.io/2026/07/04/algorithm-graph-search/" data-id="cuidnlNPw42Wk0tBLheVVmM0u" data-title="图搜索观测笔记：BFS、Dijkstra 与状态空间" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/" rel="tag">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dijkstra/" rel="tag">Dijkstra</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/graph/" rel="tag">graph</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shortest-path/" rel="tag">shortest-path</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ctf-web-sql-injection" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <span class="article-signal">OBSERVATION</span>
+    <a href="/2026/07/04/ctf-web-sql-injection/" class="article-date">
+  <time class="dt-published" datetime="2026-07-04T04:25:00.000Z" itemprop="datePublished">2026-07-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/07/04/ctf-web-sql-injection/">CTF Web复盘：SQL注入从异常回显到稳定利用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>SQL 注入的本质，是用户输入被拼接进查询语义，导致数据和指令边界坍塌。CTF 中我们追求拿 flag，但复盘时更重要的是理解漏洞如何出现、如何验证、如何修复。</p>
+<h2 id="观测异常"><a href="#观测异常" class="headerlink" title="观测异常"></a>观测异常</h2><p>常见入口包括登录框、搜索框、文章 ID、排序参数和 Cookie。第一步不是直接上大 payload，而是做最小扰动：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;</span><br><span class="line">1&quot;</span><br><span class="line">1 and 1=1</span><br><span class="line">1 and 1=2</span><br></pre></td></tr></table></figure>
+
+<p>如果页面出现数据库错误、结果数量变化或响应时间异常，就说明输入可能影响了查询结构。</p>
+<h2 id="判断列数与回显位"><a href="#判断列数与回显位" class="headerlink" title="判断列数与回显位"></a>判断列数与回显位</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?id=1 order by 1</span><br><span class="line">?id=1 order by 2</span><br><span class="line">?id=-1 union select 1,2,3</span><br></pre></td></tr></table></figure>
+
+<p>当 <code>order by n</code> 报错时，列数通常小于 <code>n</code>。<code>union select</code> 的可见数字位置就是回显位。</p>
+<h2 id="信息枚举路径"><a href="#信息枚举路径" class="headerlink" title="信息枚举路径"></a>信息枚举路径</h2><p>以 MySQL 为例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">database()</span><br><span class="line">version()</span><br><span class="line">group_concat(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span>database()</span><br><span class="line">group_concat(column_name) <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name<span class="operator">=</span><span class="string">&#x27;flag&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="防御视角"><a href="#防御视角" class="headerlink" title="防御视角"></a>防御视角</h2><table>
+<thead>
+<tr>
+<th>风险点</th>
+<th>防御方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>字符串拼接 SQL</td>
+<td>使用参数化查询或 ORM 绑定变量</td>
+</tr>
+<tr>
+<td>错误信息暴露</td>
+<td>生产环境关闭详细数据库错误</td>
+</tr>
+<tr>
+<td>权限过大</td>
+<td>数据库账户最小权限</td>
+</tr>
+<tr>
+<td>输入无约束</td>
+<td>类型校验、白名单、长度限制</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://drifter2005.github.io/2026/07/04/ctf-web-sql-injection/" data-id="cuidy_BmdjJ2lzSh5aRBtg3mj" data-title="CTF Web复盘：SQL注入从异常回显到稳定利用" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQLi/" rel="tag">SQLi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/payload/" rel="tag">payload</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/security/" rel="tag">security</a></li></ul>
 
     </footer>
   </div>
@@ -572,7 +571,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://drifter2005.github.io/observatory-manifesto/" data-id="cuidMUBNFo2L9OF1Ei0XC0-5v" data-title="观测日志：算法与CTF的星图" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://drifter2005.github.io/observatory-manifesto/" data-id="cuidD3NcVZeqrZbmf7oCGlcRw" data-title="观测日志：算法与CTF的星图" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -654,11 +653,11 @@
           </li>
         
           <li>
-            <a href="/2026/07/04/ctf-web-sql-injection/">CTF Web复盘：SQL注入从异常回显到稳定利用</a>
+            <a href="/2026/07/04/algorithm-graph-search/">图搜索观测笔记：BFS、Dijkstra 与状态空间</a>
           </li>
         
           <li>
-            <a href="/2026/07/04/algorithm-graph-search/">图搜索观测笔记：BFS、Dijkstra 与状态空间</a>
+            <a href="/2026/07/04/ctf-web-sql-injection/">CTF Web复盘：SQL注入从异常回显到稳定利用</a>
           </li>
         
           <li>
