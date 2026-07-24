@@ -16,7 +16,7 @@
 <meta property="og:description" content="RSA 的安全性依赖大整数分解困难，但 CTF 题目常常不会直接让你分解 n，而是通过错误参数、重复消息或填充缺失制造侧信道。 小指数风险当 e &#x3D; 3 且明文 m 很小，如果没有填充，可能出现： 12c &#x3D; m^3 mod nm^3 &lt; n  此时模运算没有真正发生，直接对 c 开三次方即可得到 m。 广播攻击如果同一个明文使用相同小指数 e &#x3D; 3 加密给三个不同模数，且模数两两互素，可">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-07-04T12:40:00.000Z">
-<meta property="article:modified_time" content="2026-07-23T12:20:49.725Z">
+<meta property="article:modified_time" content="2026-07-24T02:17:14.149Z">
 <meta property="article:author" content="Drifter2005">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Crypto">
@@ -151,7 +151,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://drifter2005.github.io/2026/07/04/crypto-rsa-small-exponent/" data-id="cuidpCFmQYyGVp2rT4xlZrFSV" data-title="Crypto观测笔记：RSA小指数与广播攻击" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="https://drifter2005.github.io/2026/07/04/crypto-rsa-small-exponent/" data-id="cuid_gdi8k_wSL9UpNcviTcy0" data-title="Crypto观测笔记：RSA小指数与广播攻击" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -206,7 +206,7 @@
   <div class="widget-wrap widget-tags">
     <h3 class="widget-title"><span>Tags</span>标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFS/" rel="tag">BFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/" rel="tag">CTF</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dijkstra/" rel="tag">Dijkstra</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSA/" rel="tag">RSA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reverse/" rel="tag">Reverse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLi/" rel="tag">SQLi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/binary/" rel="tag">binary</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debugging/" rel="tag">debugging</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graph/" rel="tag">graph</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/number-theory/" rel="tag">number-theory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/payload/" rel="tag">payload</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/" rel="tag">security</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shortest-path/" rel="tag">shortest-path</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFS/" rel="tag">BFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/" rel="tag">CTF</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dijkstra/" rel="tag">Dijkstra</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSA/" rel="tag">RSA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reverse/" rel="tag">Reverse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLi/" rel="tag">SQLi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/binary/" rel="tag">binary</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debugging/" rel="tag">debugging</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graph/" rel="tag">graph</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/number-theory/" rel="tag">number-theory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/payload/" rel="tag">payload</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/" rel="tag">security</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shortest-path/" rel="tag">shortest-path</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -215,7 +215,7 @@
   <div class="widget-wrap widget-tagcloud">
     <h3 class="widget-title"><span>Signal Cloud</span>标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/BFS/" style="font-size: 13px;">BFS</a> <a href="/tags/CTF/" style="font-size: 21px;">CTF</a> <a href="/tags/Crypto/" style="font-size: 13px;">Crypto</a> <a href="/tags/Dijkstra/" style="font-size: 13px;">Dijkstra</a> <a href="/tags/RSA/" style="font-size: 13px;">RSA</a> <a href="/tags/Reverse/" style="font-size: 13px;">Reverse</a> <a href="/tags/SQLi/" style="font-size: 13px;">SQLi</a> <a href="/tags/Web/" style="font-size: 13px;">Web</a> <a href="/tags/algorithm/" style="font-size: 17px;">algorithm</a> <a href="/tags/binary/" style="font-size: 13px;">binary</a> <a href="/tags/debugging/" style="font-size: 13px;">debugging</a> <a href="/tags/graph/" style="font-size: 13px;">graph</a> <a href="/tags/number-theory/" style="font-size: 13px;">number-theory</a> <a href="/tags/payload/" style="font-size: 13px;">payload</a> <a href="/tags/security/" style="font-size: 17px;">security</a> <a href="/tags/shortest-path/" style="font-size: 13px;">shortest-path</a>
+      <a href="/tags/BFS/" style="font-size: 13px;">BFS</a> <a href="/tags/CTF/" style="font-size: 21px;">CTF</a> <a href="/tags/Crypto/" style="font-size: 13px;">Crypto</a> <a href="/tags/Dijkstra/" style="font-size: 13px;">Dijkstra</a> <a href="/tags/RSA/" style="font-size: 13px;">RSA</a> <a href="/tags/Reverse/" style="font-size: 13px;">Reverse</a> <a href="/tags/SQLi/" style="font-size: 13px;">SQLi</a> <a href="/tags/Web/" style="font-size: 13px;">Web</a> <a href="/tags/algorithm/" style="font-size: 17px;">algorithm</a> <a href="/tags/binary/" style="font-size: 13px;">binary</a> <a href="/tags/debugging/" style="font-size: 13px;">debugging</a> <a href="/tags/graph/" style="font-size: 13px;">graph</a> <a href="/tags/number-theory/" style="font-size: 13px;">number-theory</a> <a href="/tags/payload/" style="font-size: 13px;">payload</a> <a href="/tags/python/" style="font-size: 13px;">python</a> <a href="/tags/security/" style="font-size: 17px;">security</a> <a href="/tags/shortest-path/" style="font-size: 13px;">shortest-path</a>
     </div>
   </div>
 
@@ -237,7 +237,7 @@
       <ul>
         
           <li>
-            <a href="/2026/07/23/suanfati/">算法题记录</a>
+            <a href="/2026/07/23/suanfati/">python算法题记录</a>
           </li>
         
           <li>
