@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>哈希绕过+变量覆盖 | Drifter Observatory</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#06111f">
+  <meta name="description" content="Drifter2005 的个人技术博客，记录算法训练、CTF 复盘、密码学与安全工程思考。">
+  <meta name="description" content="哈希绕过****0E绕过弱比较1234567&lt;?phpif ($_GET[&#x27;name&#x27;] !&#x3D; $_GET[&#x27;password&#x27;] &amp;&amp;MD5($_GET[&#x27;name&#x27;]) &#x3D;&#x3D; MD5($_GET[&#x27;password&#x27;]))&#123;    echo &quot;flag&quot;;&amp;#12">
+<meta property="og:type" content="article">
+<meta property="og:title" content="哈希绕过+变量覆盖">
+<meta property="og:url" content="https://drifter2005.github.io/2026/07/24/web-bf/index.html">
+<meta property="og:site_name" content="Drifter Observatory">
+<meta property="og:description" content="哈希绕过****0E绕过弱比较1234567&lt;?phpif ($_GET[&#x27;name&#x27;] !&#x3D; $_GET[&#x27;password&#x27;] &amp;&amp;MD5($_GET[&#x27;name&#x27;]) &#x3D;&#x3D; MD5($_GET[&#x27;password&#x27;]))&#123;    echo &quot;flag&quot;;&amp;#12">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-24T00:37:42.322Z">
+<meta property="article:modified_time" content="2026-07-24T00:37:42.584Z">
+<meta property="article:author" content="Drifter2005">
+<meta property="article:tag" content="web">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="shortcut icon" href="/favicon.svg">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="cursor-halo" aria-hidden="true"></div>
+  <div class="cosmic-background" aria-hidden="true">
+    <span class="cosmic-orbit orbit-alpha"></span>
+    <span class="cosmic-orbit orbit-beta"></span>
+    <span class="cosmic-orbit orbit-gamma"></span>
+  </div>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div class="cosmic-grid" aria-hidden="true"></div>
+  <div class="cosmic-scanline" aria-hidden="true"></div>
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <div class="hero-kicker">ALGORITHM / CTF / SECURITY RESEARCH</div>
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Drifter Observatory</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">在星云、证明与漏洞之间航行</a>
+        </h2>
+      
+      <div class="hero-metrics" aria-label="research focus">
+        <span>Graph Theory</span>
+        <span>Crypto</span>
+        <span>Reverse</span>
+        <span>Pwn</span>
+      </div>
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/algorithm/">算法星图</a>
+        
+          <a class="main-nav-link" href="/ctf/">CTF档案</a>
+        
+          <a class="main-nav-link" href="/archives/">归档</a>
+        
+          <a class="main-nav-link" href="/about/">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          
+            <a class="nav-icon" target="_blank" rel="noopener" href="https://github.com/Drifter2005"><span class="fa fa-github"></span></a>
+          
+        
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://drifter2005.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-web-bf" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <span class="article-signal">OBSERVATION</span>
+    <a href="/2026/07/24/web-bf/" class="article-date">
+  <time class="dt-published" datetime="2026-07-24T00:37:42.322Z" itemprop="datePublished">2026-07-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      哈希绕过+变量覆盖
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="哈希绕过"><a href="#哈希绕过" class="headerlink" title="哈希绕过****"></a>哈希绕过****</h1><h2 id="0E绕过弱比较"><a href="#0E绕过弱比较" class="headerlink" title="0E绕过弱比较"></a>0E绕过弱比较</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">if ($_GET[&#x27;name&#x27;] != $_GET[&#x27;password&#x27;] &amp;&amp;</span><br><span class="line">MD5($_GET[&#x27;name&#x27;]) == MD5($_GET[&#x27;password&#x27;]))&#123;</span><br><span class="line">    echo &quot;flag&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>PHP在处理哈希字符串时，它把每一个以“0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以“0E”开头的，PHP会当作科学计数法来处理，也就是0的n次方，得到的值比较的时候都相同。</p>
+<p>这种方式只有在弱比较的时候才能使用。</p>
+<p><strong>以下值在md5加密后以0E开头：</strong></p>
+<ul>
+<li>QNKCDZO</li>
+<li>240610708</li>
+<li>s878926199a</li>
+<li>s155964671a</li>
+<li>s214587387a</li>
+<li>s214587387a</li>
+</ul>
+<p><strong>以下值在sha1加密后以0E开头：</strong></p>
+<ul>
+<li>aaroZmOk</li>
+<li>aaK1STfY</li>
+<li>aaO8zKZF</li>
+<li>aa3OFF9m</li>
+<li>0e1290633704</li>
+<li>10932435112</li>
+</ul>
+<p>双重MD5加密后0E开头：</p>
+<ul>
+<li>7r4lGXCH2Ksu2JNT3BYM</li>
+<li>CbDLytmyGm2xQyaLNhWn</li>
+<li>770hQgrBOjrcqftrlaZk</li>
+</ul>
+<p>还有的时候会限制字符串为纯数字或字母，这些特殊条件的字符串可以自行搜索。</p>
+<h2 id="数组绕过"><a href="#数组绕过" class="headerlink" title="数组绕过"></a>数组绕过</h2><p>对于php强比较和弱比较：<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=md5&spm=1001.2101.3001.7020">md5</a>()，sha1()函数无法处理数组，如果传入的为数组，会返回NULL，所以两个数组经过加密后得到的都是NULL，也就是相等的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a=$_GET[&#x27;a&#x27;];</span><br><span class="line">$b=$_GET[&#x27;b&#x27;];</span><br><span class="line">if ($a!==$b &amp;&amp; md5($a)===md5($b))&#123;</span><br><span class="line">    echo &quot;flag&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>GET情况下的payload(POST同理)：</p>
+<pre class="highlighter-hljs ruby mCustomScrollbar _mCS_3 mCS-autoHide mCS_no_scrollbar" data-dark-theme="true" highlighted="true" id="pre-xNK4pF"><div id="mCSB_3" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" tabindex="0"><div id="mCSB_3_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y mCS_x_hidden mCS_no_scrollbar_x" dir="ltr"><code-pre class="code-pre" id="pre-Zn3yN6">?a[]=1&b[]=2</code-pre></div></div></pre>
+
+<h2 id="MD5碰撞"><a href="#MD5碰撞" class="headerlink" title="MD5碰撞"></a>MD5碰撞</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">show_source(__FILE__);</span><br><span class="line">if((string)$_POST[&#x27;a&#x27;]!==(string)$_POST[&#x27;b&#x27;] &amp;&amp; </span><br><span class="line">  md5($_POST[&#x27;a&#x27;])===md5($_POST[&#x27;b&#x27;]))&#123;</span><br><span class="line">    echo &quot;flag&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>比较a，b时将a，b转换为字符串比较，这边就不能用数组了。因为数组转换为字符串时都会变成Array。</p>
+<p>因为数组要求构造a和b不同，但是MD5相同，也就是说要求传入两个MD5相同的不同字符串。所以我们只能用MD5碰撞来实现</p>
+<p>MD5截断爆破</p>
+<p>给出一段md5值要求找到匹配的原码。一般使用爆破脚本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">import hashlib</span><br><span class="line">from multiprocessing.dummy import Pool as ThreadPool</span><br><span class="line"></span><br><span class="line"># MD5截断数值已知 求原始数据</span><br><span class="line"># 例子 substr(md5(captcha), 0, 6)=60b7ef</span><br><span class="line"></span><br><span class="line">def md5(s):  # 计算MD5字符串</span><br><span class="line">    return hashlib.md5(str(s).encode(&#x27;utf-8&#x27;)).hexdigest()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">keymd5 = &#x27;8ffb1&#x27;   #已知的md5截断值</span><br><span class="line">md5start = 0   # 设置题目已知的截断位置</span><br><span class="line">md5length = 5</span><br><span class="line"></span><br><span class="line">def findmd5(sss):    # 输入范围 里面会进行md5测试</span><br><span class="line">    key = sss.split(&#x27;:&#x27;)</span><br><span class="line">    start = int(key[0])   # 开始位置</span><br><span class="line">    end = int(key[1])    # 结束位置</span><br><span class="line">    result = 0</span><br><span class="line">    for i in range(start, end):</span><br><span class="line">        # print(md5(i)[md5start:md5length])</span><br><span class="line">        if md5(i)[0:5] == keymd5:            # 拿到加密字符串</span><br><span class="line">            result = i</span><br><span class="line">            print(result)    # 打印</span><br><span class="line">            break</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">list=[]  # 参数列表</span><br><span class="line">for i in range(10):   # 多线程的数字列表 开始与结尾</span><br><span class="line">    list.append(str(10000000*i) + &#x27;:&#x27; + str(10000000*(i+1)))</span><br><span class="line">pool = ThreadPool()    # 多线程任务</span><br><span class="line">pool.map(findmd5, list) # 函数 与参数列表</span><br><span class="line">pool.close()</span><br><span class="line">pool.join()</span><br></pre></td></tr></table></figure>
+
+<p>sha256截断爆破</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">import hashlib</span><br><span class="line">from multiprocessing.dummy import Pool as ThreadPool</span><br><span class="line"></span><br><span class="line"># sha256截断数值已知 求原始数据</span><br><span class="line"># 例子 substr(sha256(captcha), 0, 6)=60b7ef</span><br><span class="line"></span><br><span class="line">def sha256(s):  # 计算sha256字符串</span><br><span class="line">    return hashlib.sha256((&#x27;TQLCTF&#x27;+str(s)).encode(&#x27;utf-8&#x27;)).hexdigest()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">keysha256 = &#x27;5625f&#x27;   #已知的sha256截断值</span><br><span class="line">sha256start = 0   # 设置题目已知的截断位置</span><br><span class="line">sha256length = 5</span><br><span class="line"></span><br><span class="line">def findsha256(sss):    # 输入范围 里面会进行sha256测试</span><br><span class="line">    key = sss.split(&#x27;:&#x27;)</span><br><span class="line">    start = int(key[0])   # 开始位置</span><br><span class="line">    end = int(key[1])    # 结束位置</span><br><span class="line">    result = 0</span><br><span class="line">    for i in range(start, end):</span><br><span class="line">        # print(sha256(i)[sha256start:sha256length])</span><br><span class="line">        if sha256(i)[0:5] == keysha256:            # 拿到加密字符串</span><br><span class="line">            result = i</span><br><span class="line">            print(result)    # 打印</span><br><span class="line">            break</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">list=[]  # 参数列表</span><br><span class="line">for i in range(10):   # 多线程的数字列表 开始与结尾</span><br><span class="line">    list.append(str(10000000*i) + &#x27;:&#x27; + str(10000000*(i+1)))</span><br><span class="line">pool = ThreadPool()    # 多线程任务</span><br><span class="line">pool.map(findsha256, list) # 函数 与参数列表</span><br><span class="line">pool.close()</span><br><span class="line">pool.join()</span><br></pre></td></tr></table></figure>
+
+<h1 id="变量覆盖"><a href="#变量覆盖" class="headerlink" title="变量覆盖****"></a>变量覆盖****</h1><p>用传参的值覆盖掉原有的值</p>
+<h2 id="extract-函数"><a href="#extract-函数" class="headerlink" title="extract()函数"></a>extract()函数</h2><p><a href="https://"><a target="_blank" rel="noopener" href="https://www.runoob.com/php/func-array-extract.html">PHP extract() 函数 | 菜鸟教程</a></a></p>
+<p>实例：</p>
+<p>将键值 “Cat”、”Dog” 和 “Horse” 赋值给变量 $a、$b 和 $c：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a = &quot;Original&quot;;</span><br><span class="line">$my_array = array(&quot;a&quot; =&gt; &quot;Cat&quot;,&quot;b&quot; =&gt; &quot;Dog&quot;, &quot;c&quot; =&gt; &quot;Horse&quot;);</span><br><span class="line">extract($my_array);</span><br><span class="line">echo &quot;\$a = $a; \$b = $b; \$c = $c&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p>extract() 函数从数组中将变量导入到当前的符号表。</p>
+<p>该函数使用数组键名作为变量名，使用数组键值作为变量值。针对数组中的每个元素，将在当前符号表中创建对应的一个变量。</p>
+<p>该函数返回成功设置的变量数目。</p>
+<h2 id="parse-str"><a href="#parse-str" class="headerlink" title="parse_str()"></a>parse_str()</h2><p><a href="https://"><a target="_blank" rel="noopener" href="https://www.runoob.com/php/func-string-parse-str.html">PHP parse_str() 函数 | 菜鸟教程</a></a></p>
+<p>把查询字符串解析到变量中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">parse_str(&quot;name=Peter&amp;age=43&quot;);</span><br><span class="line">echo $name.&quot;&lt;br&gt;&quot;;</span><br><span class="line">	echo $age;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p>parse_str() 函数把查询字符串解析到变量中。</p>
+<p>**注释：**如果未设置 array 参数，由该函数设置的变量将覆盖已存在的同名变量。**注释：**php.ini 文件中的 magic_quotes_gpc 设置影响该函数的输出。如果已启用，那么在 parse_str() 解析之前，变量会被 addslashes() 转换。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://drifter2005.github.io/2026/07/24/web-bf/" data-id="cuidRx2K-RueQY7Mp679YKrhR" data-title="哈希绕过+变量覆盖" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/" rel="tag">web</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2026/07/23/suanfati/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">python算法题记录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  <div class="sidebar-command">
+    <span class="sidebar-command-kicker">SIDE CONSOLE</span>
+    <strong>快速导航</strong>
+    <p>按分类、标签和时间线检索算法与 CTF 观测记录。</p>
+  </div>
+  
+    
+  <div class="widget-wrap widget-categories">
+    <h3 class="widget-title"><span>Categories</span>分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap widget-tags">
+    <h3 class="widget-title"><span>Tags</span>标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFS/" rel="tag">BFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/" rel="tag">CTF</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dijkstra/" rel="tag">Dijkstra</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSA/" rel="tag">RSA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reverse/" rel="tag">Reverse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLi/" rel="tag">SQLi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/binary/" rel="tag">binary</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debugging/" rel="tag">debugging</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graph/" rel="tag">graph</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/number-theory/" rel="tag">number-theory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/payload/" rel="tag">payload</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/" rel="tag">security</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shortest-path/" rel="tag">shortest-path</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap widget-tagcloud">
+    <h3 class="widget-title"><span>Signal Cloud</span>标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/BFS/" style="font-size: 13px;">BFS</a> <a href="/tags/CTF/" style="font-size: 21px;">CTF</a> <a href="/tags/Crypto/" style="font-size: 13px;">Crypto</a> <a href="/tags/Dijkstra/" style="font-size: 13px;">Dijkstra</a> <a href="/tags/RSA/" style="font-size: 13px;">RSA</a> <a href="/tags/Reverse/" style="font-size: 13px;">Reverse</a> <a href="/tags/SQLi/" style="font-size: 13px;">SQLi</a> <a href="/tags/Web/" style="font-size: 13px;">Web</a> <a href="/tags/algorithm/" style="font-size: 17px;">algorithm</a> <a href="/tags/binary/" style="font-size: 13px;">binary</a> <a href="/tags/debugging/" style="font-size: 13px;">debugging</a> <a href="/tags/graph/" style="font-size: 13px;">graph</a> <a href="/tags/number-theory/" style="font-size: 13px;">number-theory</a> <a href="/tags/payload/" style="font-size: 13px;">payload</a> <a href="/tags/python/" style="font-size: 13px;">python</a> <a href="/tags/security/" style="font-size: 17px;">security</a> <a href="/tags/shortest-path/" style="font-size: 13px;">shortest-path</a> <a href="/tags/web/" style="font-size: 13px;">web</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/07/">七月 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">五月 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap widget-recent">
+    <h3 class="widget-title"><span>Recent</span>最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/07/24/web-bf/">哈希绕过+变量覆盖</a>
+          </li>
+        
+          <li>
+            <a href="/2026/07/23/suanfati/">python算法题记录</a>
+          </li>
+        
+          <li>
+            <a href="/2026/07/04/reverse-engineering-first-pass/">Reverse入门巡天：从字符串到控制流</a>
+          </li>
+        
+          <li>
+            <a href="/2026/07/04/crypto-rsa-small-exponent/">Crypto观测笔记：RSA小指数与广播攻击</a>
+          </li>
+        
+          <li>
+            <a href="/2026/07/04/algorithm-graph-search/">图搜索观测笔记：BFS、Dijkstra 与状态空间</a>
+          </li>
+        
+          <li>
+            <a href="/2026/07/04/ctf-web-sql-injection/">CTF Web复盘：SQL注入从异常回显到稳定利用</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 Drifter2005<br>
+      Built with <a href="https://hexo.io/" target="_blank">Hexo</a>. Calibrated for algorithms, CTF writeups, and long-range curiosity.
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/algorithm/" class="mobile-nav-link">算法星图</a>
+  
+    <a href="/ctf/" class="mobile-nav-link">CTF档案</a>
+  
+    <a href="/archives/" class="mobile-nav-link">归档</a>
+  
+    <a href="/about/" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/cosmic.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
