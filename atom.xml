@@ -6,7 +6,7 @@
   <link href="https://drifter2005.github.io/atom.xml" rel="self"/>
   
   <link href="https://drifter2005.github.io/"/>
-  <updated>2026-07-26T04:59:50.679Z</updated>
+  <updated>2026-07-26T05:30:07.757Z</updated>
   <id>https://drifter2005.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://drifter2005.github.io/2026/07/25/algorithm/"/>
     <id>https://drifter2005.github.io/2026/07/25/algorithm/</id>
     <published>2026-07-25T02:52:49.970Z</published>
-    <updated>2026-07-26T04:59:50.679Z</updated>
+    <updated>2026-07-26T05:30:07.757Z</updated>
     
     
       
@@ -95,7 +95,7 @@
     <link href="https://drifter2005.github.io/2026/07/04/reverse-engineering-first-pass/"/>
     <id>https://drifter2005.github.io/2026/07/04/reverse-engineering-first-pass/</id>
     <published>2026-07-04T13:00:00.000Z</published>
-    <updated>2026-07-26T13:30:04.050Z</updated>
+    <updated>2026-07-26T13:38:18.439Z</updated>
     
     
       
@@ -124,7 +124,7 @@
     <link href="https://drifter2005.github.io/2026/07/04/crypto-rsa-small-exponent/"/>
     <id>https://drifter2005.github.io/2026/07/04/crypto-rsa-small-exponent/</id>
     <published>2026-07-04T12:40:00.000Z</published>
-    <updated>2026-07-26T13:30:04.050Z</updated>
+    <updated>2026-07-26T13:38:18.439Z</updated>
     
     
       
@@ -153,7 +153,7 @@
     <link href="https://drifter2005.github.io/2026/07/04/algorithm-graph-search/"/>
     <id>https://drifter2005.github.io/2026/07/04/algorithm-graph-search/</id>
     <published>2026-07-04T12:10:00.000Z</published>
-    <updated>2026-07-26T13:30:04.050Z</updated>
+    <updated>2026-07-26T13:38:18.439Z</updated>
     
     
       
@@ -196,13 +196,13 @@
     <category term="CTF" scheme="https://drifter2005.github.io/categories/CTF/"/>
     
     
-    <category term="security" scheme="https://drifter2005.github.io/tags/security/"/>
-    
     <category term="Web" scheme="https://drifter2005.github.io/tags/Web/"/>
     
     <category term="SQLi" scheme="https://drifter2005.github.io/tags/SQLi/"/>
     
     <category term="payload" scheme="https://drifter2005.github.io/tags/payload/"/>
+    
+    <category term="security" scheme="https://drifter2005.github.io/tags/security/"/>
     
   </entry>
   
@@ -225,11 +225,11 @@
     <category term="notes" scheme="https://drifter2005.github.io/categories/notes/"/>
     
     
+    <category term="security" scheme="https://drifter2005.github.io/tags/security/"/>
+    
     <category term="CTF" scheme="https://drifter2005.github.io/tags/CTF/"/>
     
     <category term="algorithm" scheme="https://drifter2005.github.io/tags/algorithm/"/>
-    
-    <category term="security" scheme="https://drifter2005.github.io/tags/security/"/>
     
   </entry>
   
