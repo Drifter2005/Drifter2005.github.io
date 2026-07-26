@@ -30,6 +30,10 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
   
+  <!-- APlayer 音乐播放器 -->
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+
   
 <link rel="stylesheet" href="/css/style.css">
 
@@ -392,8 +396,16 @@
 </nav>
     
 
+<!-- 音乐播放器容器 -->
+<div id="aplayer"></div>
+
 
 <script src="/js/jquery-3.6.4.min.js"></script>
+
+
+<!-- APlayer 音乐播放器脚本 -->
+
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
 
 
 
@@ -406,10 +418,40 @@
 
 <script src="/js/script.js"></script>
 
+
+<script src="/js/likes.js"></script>
+
+
+<script src="/js/music-player.js"></script>
+
 <script async src="/js/cosmic.js"></script>
 
 
 
+
+  
+<script src="https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
+<script defer src="/.js"></script>
+
+<script defer>
+    var GUEST_INFO = ['nick','mail','link'];
+    var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+        return GUEST_INFO.indexOf(item) > -1
+    });
+    var notify = 'false' == true;
+    var verify = 'false' == true;
+    new Valine({
+        el: '.vcomment',
+        notify: notify,
+        verify: verify,
+        appId: "YOUR_LEANCLOUD_APPID",
+        appKey: "YOUR_LEANCLOUD_APPKEY",
+        placeholder: "在这里留下你的观测信号 💬",
+        pageSize:'10',
+        avatar:'identicon',
+        lang:'zh-cn'
+    });
+</script>
 
   </div>
 </body>
