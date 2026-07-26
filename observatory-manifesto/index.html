@@ -38,9 +38,7 @@
   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
 
-  
-<link rel="stylesheet" href="/css/style.css">
-
+  <link rel="stylesheet" href="/css/style.css?v=ms1n7nln">
   
     
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
@@ -120,7 +118,7 @@
   </div>
 </header>
 
-      <div class="outer">
+      <div class="outer" id="content-outer">
         <section id="main"><div class="post-wide-shell">
   <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   
@@ -177,6 +175,17 @@
 
       </div>
     
+    
+      <footer class="article-footer">
+        <a data-url="https://drifter2005.github.io/observatory-manifesto/" data-id="cuidOAOlGne9U-ngLGJ2TOUZ2" data-title="观测日志：算法与CTF的星图" class="article-share-link"><span class="fa fa-share">分享</span></a>
+        <button class="like-btn" data-post="/observatory-manifesto/" title="点赞此文章" aria-pressed="false">
+          <span class="like-icon">❤️</span>
+          <span class="like-count">0</span>
+        </button>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/security/" rel="tag">security</a></li></ul>
+
+      </footer>
     
   </div>
   
@@ -236,8 +245,8 @@
 </nav>
     
 
-<!-- 音乐播放器容器 -->
-<div id="aplayer"></div>
+<!-- 音乐播放器容器（id 不用 "aplayer"：那会在 window 上创建同名全局引用，与脚本判断冲突） -->
+<div id="music-player-host"></div>
 
 
 <script src="/js/jquery-3.6.4.min.js"></script>
@@ -256,15 +265,12 @@
 
 
 
-<script src="/js/script.js"></script>
 
-
-<script src="/js/likes.js"></script>
-
-
-<script src="/js/music-player.js"></script>
-
-<script async src="/js/cosmic.js"></script>
+<script src="/js/script.js?v=ms1n7nln"></script>
+<script src="/js/likes.js?v=ms1n7nln"></script>
+<script src="/js/music-player.js?v=ms1n7nln"></script>
+<script src="/js/cosmic.js?v=ms1n7nln"></script>
+<script src="/js/pjax.js?v=ms1n7nln"></script>
 
 
 

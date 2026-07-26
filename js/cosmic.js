@@ -107,6 +107,8 @@
     requestAnimationFrame(drawStars);
   }
 
+  var revealObserver = null;
+
   function revealOnScroll() {
     var targets = document.querySelectorAll('.article, .widget-wrap');
     if (!('IntersectionObserver' in window)) {
@@ -114,20 +116,29 @@
       return;
     }
 
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+    if (!revealObserver) {
+      revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+    }
 
-    targets.forEach(function (target) { observer.observe(target); });
+    targets.forEach(function (target) {
+      if (target.classList.contains('in-view')) return;
+      revealObserver.observe(target);
+    });
   }
 
   function attachCardLight() {
     document.querySelectorAll('.article-inner').forEach(function (card) {
+      // PJAX 换入的新节点才需要绑定，避免重复挂载
+      if (card.dataset.cardLight === '1') return;
+      card.dataset.cardLight = '1';
+
       var rafId = null;
       card.addEventListener('pointermove', function (event) {
         if (rafId) cancelAnimationFrame(rafId);
@@ -149,6 +160,12 @@
     buildStars();
     if (ctx && !reducedMotion) requestAnimationFrame(drawStars);
   }
+
+  // PJAX 换入新内容后重新绑定内容区交互（星空/光晕是全局的，无需重建）
+  window.CosmicRefresh = function () {
+    revealOnScroll();
+    attachCardLight();
+  };
 
   var resizeTimeout;
   window.addEventListener('resize', function () {
