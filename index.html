@@ -5,9 +5,14 @@
   
   
   <title>Drifter Observatory</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="theme-color" content="#06111f">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5, user-scalable=yes">
+  <meta name="theme-color" content="#04050d">
+  <meta name="color-scheme" content="dark">
   <meta name="description" content="Drifter2005 的个人技术博客，记录算法训练、CTF 复盘、密码学与安全工程思考。">
+  <meta name="generator" content="Hexo">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
   <meta name="description" content="Drifter2005 的个人技术博客，记录算法训练、CTF 复盘、密码学与安全工程思考。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Drifter Observatory">
@@ -22,6 +27,8 @@
   
     <link rel="shortcut icon" href="/favicon.svg">
   
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
   
   
 <link rel="stylesheet" href="/css/style.css">
@@ -29,14 +36,20 @@
   
     
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+<link rel="stylesheet" async href="/.css">
 
   
   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+<link rel="stylesheet" async href="/.css">
 
-<meta name="generator" content="Hexo 8.1.2"></head>
+  <style>
+    html { scroll-padding-top: 80px; }
+    body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  </style>
+</head>
 
-<body>
+<body class="page-layout-default">
   <canvas id="starfield" aria-hidden="true"></canvas>
   <div class="cursor-halo" aria-hidden="true"></div>
   <div class="cosmic-background" aria-hidden="true">
@@ -80,7 +93,7 @@
         
           <a class="main-nav-link" href="/archives/">归档</a>
         
-          <a class="main-nav-link" href="/about/">关于</a>
+          <a class="main-nav-link" href="/about/">随记</a>
         
       </nav>
       <nav id="sub-nav">
@@ -120,22 +133,49 @@
   </div>
 </section>
 
-<section class="mission-grid">
-  <a class="mission-card" href="/algorithm/">
-    <span class="mission-index">01</span>
-    <h2>算法星图</h2>
-    <p>图论、动态规划、数论与数据结构，用复杂度和不变量校准每条轨道。</p>
-  </a>
-  <a class="mission-card" href="/ctf/">
-    <span class="mission-index">02</span>
-    <h2>CTF 档案</h2>
-    <p>Web、Crypto、Reverse、Pwn 与 Misc，记录漏洞成因、利用链和修复思路。</p>
-  </a>
-  <a class="mission-card" href="/about/">
-    <span class="mission-index">03</span>
-    <h2>关于观测站</h2>
-    <p>把零散训练沉淀成可复用的知识结构，让每一次探索都留下坐标。</p>
-  </a>
+<section class="guide-grid" aria-label="观测站引导">
+  <details class="guide-card">
+    <summary>
+      <span class="guide-card-index">01</span>
+      <span class="guide-card-heading">
+        <strong>算法星图</strong>
+        <small>图论、动态规划、数论与数据结构的训练坐标。</small>
+      </span>
+      <span class="guide-card-toggle" aria-hidden="true">+</span>
+    </summary>
+    <div class="guide-card-body">
+      <p>从状态定义、边权建模和复杂度上限出发，把算法题拆成可以验证的轨道。</p>
+      <a class="guide-card-link" href="/algorithm/">进入完整引导</a>
+    </div>
+  </details>
+  <details class="guide-card">
+    <summary>
+      <span class="guide-card-index">02</span>
+      <span class="guide-card-heading">
+        <strong>CTF 档案</strong>
+        <small>Web、Crypto、Reverse、Pwn 与 Misc 的复盘入口。</small>
+      </span>
+      <span class="guide-card-toggle" aria-hidden="true">+</span>
+    </summary>
+    <div class="guide-card-body">
+      <p>保存漏洞成因、验证证据、利用链和修复思路，不只留下最终 payload。</p>
+      <a class="guide-card-link" href="/ctf/">进入完整引导</a>
+    </div>
+  </details>
+  <details class="guide-card">
+    <summary>
+      <span class="guide-card-index">03</span>
+      <span class="guide-card-heading">
+        <strong>随记</strong>
+        <small>工程记录、工具笔记与暂时无法归类的观察。</small>
+      </span>
+      <span class="guide-card-toggle" aria-hidden="true">+</span>
+    </summary>
+    <div class="guide-card-body">
+      <p>把环境配置、博客维护和正在形成的想法放在这里，给知识留下一个安静的位置。</p>
+      <a class="guide-card-link" href="/about/">进入完整引导</a>
+    </div>
+  </details>
 </section>
 
 <section class="latest-transmissions">
@@ -145,405 +185,474 @@
   </div>
   
   
-    <article id="post-reverse-engineering-first-pass" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <span class="article-signal">OBSERVATION</span>
-    <a href="/2026/07/04/reverse-engineering-first-pass/" class="article-date">
-  <time class="dt-published" datetime="2026-07-04T13:00:00.000Z" itemprop="datePublished">2026-07-04</time>
-</a>
+    <article id="post-algorithm" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="article-inner">
     
+    
+      
+      <div class="article-summary">
+        <div class="article-meta">
+          <span class="article-signal">OBSERVATION</span>
+          <a href="/2026/07/25/algorithm/" class="article-date">
+  <time class="dt-published" datetime="2026-07-25T10:52:49.970Z" itemprop="datePublished">2026-07-25</time>
+</a>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/algorithm/">algorithm</a>►<a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+  </div>
+
+        </div>
+        
+          <header class="article-header">
+            <h1 class="p-name article-title">
+              <a href="/2026/07/25/algorithm/">动态规划</a>
+            </h1>
+          </header>
+        
+        <div class="article-entry article-preview">
+          <p># 动态规划总的来说，动态规划就是将一个问题拆分为许多小问题，用小问题的答案来得到最终的结果，避免重复计算。
+序言：在这之前我的刷题逻辑就是在做题网站上随机跳转，跳到什么题做什么，什么算法我都不清楚，我都是把一个仍给ai，学一个某个题的解题思路，昨天霍师傅告诉我可以写一下这个动态规划的汇总，当时我的脑子就有点短路了，动态规划是什么鬼，然后几天我系统搜了一下，原来是DP啊，但是只有前几个类型的还略微熟悉一点，到后面几个类型的DP，就算是橙题做起来都十分吃力，看来算法的学习还是要系统地学，之前我的学习方法完完全全就是野路子，虽然入门快，但是上限被大大拉低了。...</p>
+        </div>
+        <p class="article-more-link">
+          <a href="/2026/07/25/algorithm/">阅读全文</a>
+        </p>
+      </div>
+    
+    
+      <footer class="article-footer">
+        <a data-url="https://drifter2005.github.io/2026/07/25/algorithm/" data-id="cuid36DUsafWod2HFLlO90Sr9" data-title="动态规划" class="article-share-link"><span class="fa fa-share">分享</span></a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-web-bf" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="article-inner">
+    
+    
+      
+      <div class="article-summary">
+        <div class="article-meta">
+          <span class="article-signal">OBSERVATION</span>
+          <a href="/2026/07/24/web-bf/" class="article-date">
+  <time class="dt-published" datetime="2026-07-24T08:37:42.322Z" itemprop="datePublished">2026-07-24</time>
+</a>
+          
   <div class="article-category">
     <a class="article-category-link" href="/categories/CTF/">CTF</a>
   </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        </div>
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2026/07/04/reverse-engineering-first-pass/">Reverse入门巡天：从字符串到控制流</a>
-    </h1>
-  
+          <header class="article-header">
+            <h1 class="p-name article-title">
+              <a href="/2026/07/24/web-bf/">哈希绕过+变量覆盖</a>
+            </h1>
+          </header>
+        
+        <div class="article-entry article-preview">
+          <p>哈希绕过0E绕过弱比较1234567&amp;lt;?phpif ($_GET[&amp;#x27;name&amp;#x27;] != $_GET[&amp;#x27;password&amp;#x27;] &amp;amp;&amp;amp;MD5($_GET[&amp;#x27;name&amp;#x27;]) == MD5($_GET[&amp;#x27;password&amp;#x27;]))&amp;#123;    echo &amp;quot;flag&amp;quot;;&amp;#125;
 
-      </header>
+PHP在处理哈希字符串时，它把每一个以“0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以“0E”开头的，PHP会当作科学计数法来...</p>
+        </div>
+        <p class="article-more-link">
+          <a href="/2026/07/24/web-bf/">阅读全文</a>
+        </p>
+      </div>
     
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>逆向分析不要急着“看懂全部”。更稳的方式是像天文观测一样分层扫描：先找明亮信号，再建立坐标系，最后锁定关键路径。</p>
-<h2 id="第一轮：静态信号"><a href="#第一轮：静态信号" class="headerlink" title="第一轮：静态信号"></a>第一轮：静态信号</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file ./challenge</span><br><span class="line">strings -a ./challenge | less</span><br><span class="line">checksec ./challenge</span><br></pre></td></tr></table></figure>
+    
+      <footer class="article-footer">
+        <a data-url="https://drifter2005.github.io/2026/07/24/web-bf/" data-id="cuiduUzsrxTBzkAASecXUX5Gf" data-title="哈希绕过+变量覆盖" class="article-share-link"><span class="fa fa-share">分享</span></a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/" rel="tag">web</a></li></ul>
 
-<p>关注内容：</p>
-<ul>
-<li>是否有 <code>flag</code>、<code>wrong</code>、<code>success</code> 等提示字符串。</li>
-<li>是否启用 PIE、Canary、NX、RELRO。</li>
-<li>是否存在压缩壳、混淆或异常节区。</li>
-</ul>
-<h2 id="第二轮：函数与分支"><a href="#第二轮：函数与分支" class="headerlink" title="第二轮：函数与分支"></a>第二轮：函数与分支</h2><p>在 IDA、Ghidra 或 Binary Ninja 中，优先定位：</p>
-<ul>
-<li><code>main</code>、<code>check</code>、<code>verify</code>、<code>decrypt</code> 等语义函数。</li>
-<li>字符串交叉引用。</li>
-<li>输入长度检查、循环、异或、查表和哈希比较。</li>
-</ul>
-<h2 id="第三轮：动态验证"><a href="#第三轮：动态验证" class="headerlink" title="第三轮：动态验证"></a>第三轮：动态验证</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">b *main</span><br><span class="line">run</span><br><span class="line">ni</span><br><span class="line">x/s $rdi</span><br><span class="line">p/x $rax</span><br></pre></td></tr></table></figure>
-
-<p>动态调试的价值不是替代静态分析，而是验证假设。每次断点都应该回答一个具体问题：输入在哪里？如何变换？在哪里比较？失败分支在哪里？</p>
-<h2 id="复盘模板"><a href="#复盘模板" class="headerlink" title="复盘模板"></a>复盘模板</h2><table>
-<thead>
-<tr>
-<th>阶段</th>
-<th>记录内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>样本信息</td>
-<td>架构、保护、哈希、运行参数</td>
-</tr>
-<tr>
-<td>关键函数</td>
-<td>输入、变换、比较、输出</td>
-</tr>
-<tr>
-<td>解题路径</td>
-<td>静态依据、动态证据、脚本</td>
-</tr>
-<tr>
-<td>防护思考</td>
-<td>混淆、反调试、边界检查</td>
-</tr>
-</tbody></table>
-<p>逆向的终点不是“猜出 flag”，而是把二进制的行为还原成清晰、可解释、可复现的模型。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://drifter2005.github.io/2026/07/04/reverse-engineering-first-pass/" data-id="cuid5vzemGkHC9PcwMzqEWfsR" data-title="Reverse入门巡天：从字符串到控制流" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reverse/" rel="tag">Reverse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/binary/" rel="tag">binary</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/debugging/" rel="tag">debugging</a></li></ul>
-
-    </footer>
+      </footer>
+    
   </div>
   
 </article>
+
+
+
+
+  
+    <article id="post-suanfati" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="article-inner">
+    
+    
+      
+      <div class="article-summary">
+        <div class="article-meta">
+          <span class="article-signal">OBSERVATION</span>
+          <a href="/2026/07/23/suanfati/" class="article-date">
+  <time class="dt-published" datetime="2026-07-23T10:29:17.939Z" itemprop="datePublished">2026-07-23</time>
+</a>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/algorithm/">algorithm</a>
+  </div>
+
+        </div>
+        
+          <header class="article-header">
+            <h1 class="p-name article-title">
+              <a href="/2026/07/23/suanfati/">python算法题记录</a>
+            </h1>
+          </header>
+        
+        <div class="article-entry article-preview">
+          <p>这个集合主要来保存我想要进行记忆的典型算法错题，有时候不想进行分类，或者懒得解释我就直接放到这个集合里面这个集合主要来保存我想要进行记忆的典型算法错题，有时候不想进行分类，或者懒得解释我就直接放到这个集合里面
+这个地方主要用来存放python写的算法题，方便我理解，如果后续我C++学好了我再用C++来写
+</p>
+        </div>
+        <p class="article-more-link">
+          <a href="/2026/07/23/suanfati/">阅读全文</a>
+        </p>
+      </div>
+    
+    
+      <footer class="article-footer">
+        <a data-url="https://drifter2005.github.io/2026/07/23/suanfati/" data-id="cuidLKIwYTDSanweA2nw3Xg-9" data-title="python算法题记录" class="article-share-link"><span class="fa fa-share">分享</span></a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-reverse-engineering-first-pass" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="article-inner">
+    
+    
+      
+      <div class="article-summary">
+        <div class="article-meta">
+          <span class="article-signal">OBSERVATION</span>
+          <a href="/2026/07/04/reverse-engineering-first-pass/" class="article-date">
+  <time class="dt-published" datetime="2026-07-04T13:00:00.000Z" itemprop="datePublished">2026-07-04</time>
+</a>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+  </div>
+
+        </div>
+        
+          <header class="article-header">
+            <h1 class="p-name article-title">
+              <a href="/2026/07/04/reverse-engineering-first-pass/">Reverse入门巡天：从字符串到控制流</a>
+            </h1>
+          </header>
+        
+        <div class="article-entry article-preview">
+          <p>逆向分析不要急着“看懂全部”。更稳的方式是像天文观测一样分层扫描：先找明亮信号，再建立坐标系，最后锁定关键路径。
+第一轮：静态信号123file ./challengestrings -a ./challenge | lesschecksec ./challenge
+
+关注内容：
+
+是否有 flag、wrong、success 等提示字符串。
+是否启用 PIE、Canary、NX、RELRO。
+是否存在压缩壳、混淆或异常节区。
+
+第二轮：函数与分支在 IDA、Ghidra 或 Binary Ninja 中，优先定位：
+
+main、check、verify...</p>
+        </div>
+        <p class="article-more-link">
+          <a href="/2026/07/04/reverse-engineering-first-pass/">阅读全文</a>
+        </p>
+      </div>
+    
+    
+      <footer class="article-footer">
+        <a data-url="https://drifter2005.github.io/2026/07/04/reverse-engineering-first-pass/" data-id="cuidQcFKzXA_LDqcqGWnh6_0L" data-title="Reverse入门巡天：从字符串到控制流" class="article-share-link"><span class="fa fa-share">分享</span></a>
+        
+        
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reverse/" rel="tag">Reverse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/binary/" rel="tag">binary</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/debugging/" rel="tag">debugging</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
 
 
 
   
     <article id="post-crypto-rsa-small-exponent" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <span class="article-signal">OBSERVATION</span>
-    <a href="/2026/07/04/crypto-rsa-small-exponent/" class="article-date">
+  
+  <div class="article-inner">
+    
+    
+      
+      <div class="article-summary">
+        <div class="article-meta">
+          <span class="article-signal">OBSERVATION</span>
+          <a href="/2026/07/04/crypto-rsa-small-exponent/" class="article-date">
   <time class="dt-published" datetime="2026-07-04T12:40:00.000Z" itemprop="datePublished">2026-07-04</time>
 </a>
-    
+          
   <div class="article-category">
     <a class="article-category-link" href="/categories/CTF/">CTF</a>
   </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        </div>
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2026/07/04/crypto-rsa-small-exponent/">Crypto观测笔记：RSA小指数与广播攻击</a>
-    </h1>
-  
+          <header class="article-header">
+            <h1 class="p-name article-title">
+              <a href="/2026/07/04/crypto-rsa-small-exponent/">Crypto观测笔记：RSA小指数与广播攻击</a>
+            </h1>
+          </header>
+        
+        <div class="article-entry article-preview">
+          <p>RSA 的安全性依赖大整数分解困难，但 CTF 题目常常不会直接让你分解 n，而是通过错误参数、重复消息或填充缺失制造侧信道。
+小指数风险当 e = 3 且明文 m 很小，如果没有填充，可能出现：
+12c = m^3 mod nm^3 &amp;lt; n
 
-      </header>
+此时模运算没有真正发生，直接对 c 开三次方即可得到 m。
+广播攻击如果同一个明文使用相同小指数 e = 3 加密给三个不同模数，且模数两两互素，可以用中国剩余定理恢复 m^3：
+12345from Crypto.Util.number import long_to_bytesM = crt([n1, n2...</p>
+        </div>
+        <p class="article-more-link">
+          <a href="/2026/07/04/crypto-rsa-small-exponent/">阅读全文</a>
+        </p>
+      </div>
     
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>RSA 的安全性依赖大整数分解困难，但 CTF 题目常常不会直接让你分解 <code>n</code>，而是通过错误参数、重复消息或填充缺失制造侧信道。</p>
-<h2 id="小指数风险"><a href="#小指数风险" class="headerlink" title="小指数风险"></a>小指数风险</h2><p>当 <code>e = 3</code> 且明文 <code>m</code> 很小，如果没有填充，可能出现：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c = m^3 mod n</span><br><span class="line">m^3 &lt; n</span><br></pre></td></tr></table></figure>
-
-<p>此时模运算没有真正发生，直接对 <code>c</code> 开三次方即可得到 <code>m</code>。</p>
-<h2 id="广播攻击"><a href="#广播攻击" class="headerlink" title="广播攻击"></a>广播攻击</h2><p>如果同一个明文使用相同小指数 <code>e = 3</code> 加密给三个不同模数，且模数两两互素，可以用中国剩余定理恢复 <code>m^3</code>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line"></span><br><span class="line">M = crt([n1, n2, n3], [c1, c2, c3])</span><br><span class="line">m = integer_nthroot(M, <span class="number">3</span>)[<span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(m))</span><br></pre></td></tr></table></figure>
-
-<h2 id="复盘清单"><a href="#复盘清单" class="headerlink" title="复盘清单"></a>复盘清单</h2><ul>
-<li>检查 <code>e</code> 是否过小，尤其是 <code>3</code>、<code>5</code>、<code>17</code>。</li>
-<li>检查是否多组密文对应同一明文。</li>
-<li>检查不同 <code>n</code> 是否存在公共因子：<code>gcd(n1, n2) &gt; 1</code>。</li>
-<li>检查是否缺少 OAEP 等安全填充。</li>
-</ul>
-<p>密码学题目最迷人的地方在于它的严谨性：每一个漏洞都对应一个被破坏的数学前提。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://drifter2005.github.io/2026/07/04/crypto-rsa-small-exponent/" data-id="cuidqvI5ym54Q5cgLhXd8oXVe" data-title="Crypto观测笔记：RSA小指数与广播攻击" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
+    
+      <footer class="article-footer">
+        <a data-url="https://drifter2005.github.io/2026/07/04/crypto-rsa-small-exponent/" data-id="cuid_1HZVGDZ8YhgHLzu8EhOD" data-title="Crypto观测笔记：RSA小指数与广播攻击" class="article-share-link"><span class="fa fa-share">分享</span></a>
+        
+        
+        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RSA/" rel="tag">RSA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/number-theory/" rel="tag">number-theory</a></li></ul>
 
-    </footer>
+      </footer>
+    
   </div>
   
 </article>
+
 
 
 
   
     <article id="post-ctf-web-sql-injection" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <span class="article-signal">OBSERVATION</span>
-    <a href="/2026/07/04/ctf-web-sql-injection/" class="article-date">
+  
+  <div class="article-inner">
+    
+    
+      
+      <div class="article-summary">
+        <div class="article-meta">
+          <span class="article-signal">OBSERVATION</span>
+          <a href="/2026/07/04/ctf-web-sql-injection/" class="article-date">
   <time class="dt-published" datetime="2026-07-04T12:25:00.000Z" itemprop="datePublished">2026-07-04</time>
 </a>
-    
+          
   <div class="article-category">
     <a class="article-category-link" href="/categories/CTF/">CTF</a>
   </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        </div>
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2026/07/04/ctf-web-sql-injection/">CTF Web复盘：SQL注入从异常回显到稳定利用</a>
-    </h1>
-  
+          <header class="article-header">
+            <h1 class="p-name article-title">
+              <a href="/2026/07/04/ctf-web-sql-injection/">CTF Web复盘：SQL注入从异常回显到稳定利用</a>
+            </h1>
+          </header>
+        
+        <div class="article-entry article-preview">
+          <p>SQL 注入的本质，是用户输入被拼接进查询语义，导致数据和指令边界坍塌。CTF 中我们追求拿 flag，但复盘时更重要的是理解漏洞如何出现、如何验证、如何修复。
+观测异常常见入口包括登录框、搜索框、文章 ID、排序参数和 Cookie。第一步不是直接上大 payload，而是做最小扰动：
+12341&amp;#x27;1&amp;quot;1 and 1=11 and 1=2
 
-      </header>
+如果页面出现数据库错误、结果数量变化或响应时间异常，就说明输入可能影响了查询结构。
+判断列数与回显位123?id=1 order by 1?id=1 order by 2?id=-1 union...</p>
+        </div>
+        <p class="article-more-link">
+          <a href="/2026/07/04/ctf-web-sql-injection/">阅读全文</a>
+        </p>
+      </div>
     
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>SQL 注入的本质，是用户输入被拼接进查询语义，导致数据和指令边界坍塌。CTF 中我们追求拿 flag，但复盘时更重要的是理解漏洞如何出现、如何验证、如何修复。</p>
-<h2 id="观测异常"><a href="#观测异常" class="headerlink" title="观测异常"></a>观测异常</h2><p>常见入口包括登录框、搜索框、文章 ID、排序参数和 Cookie。第一步不是直接上大 payload，而是做最小扰动：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;</span><br><span class="line">1&quot;</span><br><span class="line">1 and 1=1</span><br><span class="line">1 and 1=2</span><br></pre></td></tr></table></figure>
-
-<p>如果页面出现数据库错误、结果数量变化或响应时间异常，就说明输入可能影响了查询结构。</p>
-<h2 id="判断列数与回显位"><a href="#判断列数与回显位" class="headerlink" title="判断列数与回显位"></a>判断列数与回显位</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?id=1 order by 1</span><br><span class="line">?id=1 order by 2</span><br><span class="line">?id=-1 union select 1,2,3</span><br></pre></td></tr></table></figure>
-
-<p>当 <code>order by n</code> 报错时，列数通常小于 <code>n</code>。<code>union select</code> 的可见数字位置就是回显位。</p>
-<h2 id="信息枚举路径"><a href="#信息枚举路径" class="headerlink" title="信息枚举路径"></a>信息枚举路径</h2><p>以 MySQL 为例：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">database()</span><br><span class="line">version()</span><br><span class="line">group_concat(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span>database()</span><br><span class="line">group_concat(column_name) <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name<span class="operator">=</span><span class="string">&#x27;flag&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="防御视角"><a href="#防御视角" class="headerlink" title="防御视角"></a>防御视角</h2><table>
-<thead>
-<tr>
-<th>风险点</th>
-<th>防御方式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>字符串拼接 SQL</td>
-<td>使用参数化查询或 ORM 绑定变量</td>
-</tr>
-<tr>
-<td>错误信息暴露</td>
-<td>生产环境关闭详细数据库错误</td>
-</tr>
-<tr>
-<td>权限过大</td>
-<td>数据库账户最小权限</td>
-</tr>
-<tr>
-<td>输入无约束</td>
-<td>类型校验、白名单、长度限制</td>
-</tr>
-</tbody></table>
-<p>一次好的 CTF 复盘，不只是保存 payload，而是写清楚“为什么这个输入改变了查询语义”。这样下一次遇到过滤、盲注或二次注入时，我们仍然能从原理出发。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://drifter2005.github.io/2026/07/04/ctf-web-sql-injection/" data-id="cuidXYnkJu9GXkOeNEt5r1940" data-title="CTF Web复盘：SQL注入从异常回显到稳定利用" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
+    
+      <footer class="article-footer">
+        <a data-url="https://drifter2005.github.io/2026/07/04/ctf-web-sql-injection/" data-id="cuidjePYzCCZ8aEYC4IJ9c1ue" data-title="CTF Web复盘：SQL注入从异常回显到稳定利用" class="article-share-link"><span class="fa fa-share">分享</span></a>
+        
+        
+        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQLi/" rel="tag">SQLi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/payload/" rel="tag">payload</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/security/" rel="tag">security</a></li></ul>
 
-    </footer>
+      </footer>
+    
   </div>
   
 </article>
+
 
 
 
   
     <article id="post-algorithm-graph-search" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <span class="article-signal">OBSERVATION</span>
-    <a href="/2026/07/04/algorithm-graph-search/" class="article-date">
+  
+  <div class="article-inner">
+    
+    
+      
+      <div class="article-summary">
+        <div class="article-meta">
+          <span class="article-signal">OBSERVATION</span>
+          <a href="/2026/07/04/algorithm-graph-search/" class="article-date">
   <time class="dt-published" datetime="2026-07-04T12:10:00.000Z" itemprop="datePublished">2026-07-04</time>
 </a>
-    
+          
   <div class="article-category">
     <a class="article-category-link" href="/categories/algorithm/">algorithm</a>
   </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        </div>
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2026/07/04/algorithm-graph-search/">图搜索观测笔记：BFS、Dijkstra 与状态空间</a>
-    </h1>
-  
-
-      </header>
+          <header class="article-header">
+            <h1 class="p-name article-title">
+              <a href="/2026/07/04/algorithm-graph-search/">图搜索观测笔记：BFS、Dijkstra 与状态空间</a>
+            </h1>
+          </header>
+        
+        <div class="article-entry article-preview">
+          <p>图搜索问题的核心不是“套模板”，而是确认状态、边权和剪枝是否被正确建模。只要模型错了，复杂度再漂亮也会偏离真实答案。
+BFS：等权宇宙中的波前扩散BFS 适合所有边权相等的最短路。它的正确性来自队列的层序性质：第一次访问某个状态时，已经抵达该状态的最短步数。
+1234567891011121314queue&amp;lt;int&amp;gt; q;vector&amp;lt;int&amp;gt; dist(n, -1);dist[s] = 0;q.push(s);while (!q.empty()) &amp;#123;    int u = q.front();    q.pop(); ...</p>
+        </div>
+        <p class="article-more-link">
+          <a href="/2026/07/04/algorithm-graph-search/">阅读全文</a>
+        </p>
+      </div>
     
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>图搜索问题的核心不是“套模板”，而是确认状态、边权和剪枝是否被正确建模。只要模型错了，复杂度再漂亮也会偏离真实答案。</p>
-<h2 id="BFS：等权宇宙中的波前扩散"><a href="#BFS：等权宇宙中的波前扩散" class="headerlink" title="BFS：等权宇宙中的波前扩散"></a>BFS：等权宇宙中的波前扩散</h2><p>BFS 适合所有边权相等的最短路。它的正确性来自队列的层序性质：第一次访问某个状态时，已经抵达该状态的最短步数。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dist</span><span class="params">(n, <span class="number">-1</span>)</span></span>;</span><br><span class="line">dist[s] = <span class="number">0</span>;</span><br><span class="line">q.<span class="built_in">push</span>(s);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">    <span class="type">int</span> u = q.<span class="built_in">front</span>();</span><br><span class="line">    q.<span class="built_in">pop</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> v : g[u]) &#123;</span><br><span class="line">        <span class="keyword">if</span> (dist[v] != <span class="number">-1</span>) <span class="keyword">continue</span>;</span><br><span class="line">        dist[v] = dist[u] + <span class="number">1</span>;</span><br><span class="line">        q.<span class="built_in">push</span>(v);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>检查点：</p>
-<ul>
-<li>状态是否唯一表示，例如 <code>(x, y, keyMask)</code> 而不只是 <code>(x, y)</code>。</li>
-<li>是否存在传送门、钥匙、方向、剩余体力等隐藏维度。</li>
-<li>图是否真的等权；如果代价不同，BFS 的层序最短性会失效。</li>
-</ul>
-<h2 id="Dijkstra：非负权重下的引力井"><a href="#Dijkstra：非负权重下的引力井" class="headerlink" title="Dijkstra：非负权重下的引力井"></a>Dijkstra：非负权重下的引力井</h2><p>Dijkstra 适合非负边权。优先队列每次弹出的都是当前未确定节点中距离最小者，因此可以安全定型。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> P = pair&lt;<span class="type">long</span> <span class="type">long</span>, <span class="type">int</span>&gt;;</span><br><span class="line">priority_queue&lt;P, vector&lt;P&gt;, greater&lt;P&gt;&gt; pq;</span><br><span class="line"><span class="function">vector&lt;<span class="type">long</span> <span class="type">long</span>&gt; <span class="title">dist</span><span class="params">(n, INF)</span></span>;</span><br><span class="line">dist[s] = <span class="number">0</span>;</span><br><span class="line">pq.<span class="built_in">push</span>(&#123;<span class="number">0</span>, s&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (!pq.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">    <span class="keyword">auto</span> [du, u] = pq.<span class="built_in">top</span>();</span><br><span class="line">    pq.<span class="built_in">pop</span>();</span><br><span class="line">    <span class="keyword">if</span> (du != dist[u]) <span class="keyword">continue</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> [v, w] : g[u]) &#123;</span><br><span class="line">        <span class="keyword">if</span> (dist[v] &gt; du + w) &#123;</span><br><span class="line">            dist[v] = du + w;</span><br><span class="line">            pq.<span class="built_in">push</span>(&#123;dist[v], v&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="常见误判"><a href="#常见误判" class="headerlink" title="常见误判"></a>常见误判</h2><table>
-<thead>
-<tr>
-<th>现象</th>
-<th>可能原因</th>
-<th>修正</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>BFS 答案偏小</td>
-<td>状态维度丢失</td>
-<td>把钥匙、方向、资源加入状态</td>
-</tr>
-<tr>
-<td>Dijkstra 超时</td>
-<td>重复入队过多</td>
-<td>使用 <code>if (du != dist[u]) continue</code></td>
-</tr>
-<tr>
-<td>最短路为负</td>
-<td>存在负权边</td>
-<td>改用 Bellman-Ford &#x2F; SPFA &#x2F; Johnson</td>
-</tr>
-<tr>
-<td>路径恢复错误</td>
-<td>只存距离未存前驱</td>
-<td>松弛时记录 <code>parent[v] = u</code></td>
-</tr>
-</tbody></table>
-<p>真正的图论训练，是把题面翻译成状态空间的能力。模板只是望远镜，建模才是星图。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://drifter2005.github.io/2026/07/04/algorithm-graph-search/" data-id="cuidzO2AVE3hWCydEvYnN23fm" data-title="图搜索观测笔记：BFS、Dijkstra 与状态空间" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
+    
+      <footer class="article-footer">
+        <a data-url="https://drifter2005.github.io/2026/07/04/algorithm-graph-search/" data-id="cuidupGblm6EOlKdnBIq9-Qu5" data-title="图搜索观测笔记：BFS、Dijkstra 与状态空间" class="article-share-link"><span class="fa fa-share">分享</span></a>
+        
+        
+        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/" rel="tag">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dijkstra/" rel="tag">Dijkstra</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/graph/" rel="tag">graph</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shortest-path/" rel="tag">shortest-path</a></li></ul>
 
-    </footer>
+      </footer>
+    
   </div>
   
 </article>
+
 
 
 
   
     <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <span class="article-signal">OBSERVATION</span>
-    <a href="/observatory-manifesto/" class="article-date">
+  
+  <div class="article-inner">
+    
+    
+      
+      <div class="article-summary">
+        <div class="article-meta">
+          <span class="article-signal">OBSERVATION</span>
+          <a href="/observatory-manifesto/" class="article-date">
   <time class="dt-published" datetime="2026-05-22T11:30:00.000Z" itemprop="datePublished">2026-05-22</time>
 </a>
-    
+          
   <div class="article-category">
     <a class="article-category-link" href="/categories/notes/">notes</a>
   </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        </div>
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/observatory-manifesto/">观测日志：算法与CTF的星图</a>
-    </h1>
-  
+          <header class="article-header">
+            <h1 class="p-name article-title">
+              <a href="/observatory-manifesto/">观测日志：算法与CTF的星图</a>
+            </h1>
+          </header>
+        
+        <div class="article-entry article-preview">
+          <p>这座博客会被整理成一座小型观测站：一边记录算法训练的证明、复杂度与实现细节，一边沉淀 CTF 中的漏洞模型、利用链和复盘方法。
+研究方向
 
-      </header>
+
+轨道
+关注点
+输出形式
+
+
+
+算法
+图论、动态规划、数据结构、数论
+题解、复杂度推导、模板复盘
+
+
+CTF
+Web、Crypto、Reverse、Pwn、Misc
+漏洞成因、利用步骤、修复建议
+
+
+工程
+Linux、Git、自动化、博客建设
+实验记录、脚本与环境配置
+
+
+写作原则尽量不当蛆，严谨，下次看能看懂
+观测坐标算法像宇宙中的轨道计算：每一次状态转移、每一条边松弛，都必须满足严格的数学约束。CTF 像深空探测...</p>
+        </div>
+        <p class="article-more-link">
+          <a href="/observatory-manifesto/">阅读全文</a>
+        </p>
+      </div>
     
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>这座博客会被整理成一座小型观测站：一边记录算法训练的证明、复杂度与实现细节，一边沉淀 CTF 中的漏洞模型、利用链和复盘方法。</p>
-<h2 id="研究方向"><a href="#研究方向" class="headerlink" title="研究方向"></a>研究方向</h2><table>
-<thead>
-<tr>
-<th>轨道</th>
-<th>关注点</th>
-<th>输出形式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>算法</td>
-<td>图论、动态规划、数据结构、数论</td>
-<td>题解、复杂度推导、模板复盘</td>
-</tr>
-<tr>
-<td>CTF</td>
-<td>Web、Crypto、Reverse、Pwn、Misc</td>
-<td>漏洞成因、利用步骤、修复建议</td>
-</tr>
-<tr>
-<td>工程</td>
-<td>Linux、Git、自动化、博客建设</td>
-<td>实验记录、脚本与环境配置</td>
-</tr>
-</tbody></table>
-<h2 id="写作原则"><a href="#写作原则" class="headerlink" title="写作原则"></a>写作原则</h2><p>我会尽量让每篇文章同时具备三件事：</p>
-<ul>
-<li><strong>可验证</strong>：不只给结论，也给边界条件、复杂度与失败样例。</li>
-<li><strong>可复现</strong>：CTF 复盘记录环境、payload、关键断点与修复方式。</li>
-<li><strong>可迁移</strong>：把单题经验抽象成检查清单、模板或思维模型。</li>
-</ul>
-<h2 id="观测坐标"><a href="#观测坐标" class="headerlink" title="观测坐标"></a>观测坐标</h2><p>算法像宇宙中的轨道计算：每一次状态转移、每一条边松弛，都必须满足严格的数学约束。CTF 像深空探测：我们从异常信号开始，建立假设、验证证据、缩小搜索空间，最终定位系统中的真实裂隙。</p>
-<p>欢迎来到 Drifter Observatory。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://drifter2005.github.io/observatory-manifesto/" data-id="cuidDScJFfQARZsByUV-gS-9U" data-title="观测日志：算法与CTF的星图" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
+    
+      <footer class="article-footer">
+        <a data-url="https://drifter2005.github.io/observatory-manifesto/" data-id="cuidXwR77qkXpc1uulxdcezYS" data-title="观测日志：算法与CTF的星图" class="article-share-link"><span class="fa fa-share">分享</span></a>
+        
+        
+        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/security/" rel="tag">security</a></li></ul>
 
-    </footer>
+      </footer>
+    
   </div>
   
 </article>
 
 
 
+
   
 
 
 
-</section></section>
+</section>
+</section>
         
           <aside id="sidebar">
   <div class="sidebar-command">
@@ -556,7 +665,7 @@
   <div class="widget-wrap widget-categories">
     <h3 class="widget-title"><span>Categories</span>分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -565,7 +674,7 @@
   <div class="widget-wrap widget-tags">
     <h3 class="widget-title"><span>Tags</span>标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFS/" rel="tag">BFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/" rel="tag">CTF</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dijkstra/" rel="tag">Dijkstra</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSA/" rel="tag">RSA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reverse/" rel="tag">Reverse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLi/" rel="tag">SQLi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/binary/" rel="tag">binary</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debugging/" rel="tag">debugging</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graph/" rel="tag">graph</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/number-theory/" rel="tag">number-theory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/payload/" rel="tag">payload</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/" rel="tag">security</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shortest-path/" rel="tag">shortest-path</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFS/" rel="tag">BFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/" rel="tag">CTF</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dijkstra/" rel="tag">Dijkstra</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSA/" rel="tag">RSA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reverse/" rel="tag">Reverse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLi/" rel="tag">SQLi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/binary/" rel="tag">binary</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debugging/" rel="tag">debugging</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graph/" rel="tag">graph</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/number-theory/" rel="tag">number-theory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/payload/" rel="tag">payload</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/" rel="tag">security</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shortest-path/" rel="tag">shortest-path</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -574,7 +683,7 @@
   <div class="widget-wrap widget-tagcloud">
     <h3 class="widget-title"><span>Signal Cloud</span>标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/BFS/" style="font-size: 13px;">BFS</a> <a href="/tags/CTF/" style="font-size: 21px;">CTF</a> <a href="/tags/Crypto/" style="font-size: 13px;">Crypto</a> <a href="/tags/Dijkstra/" style="font-size: 13px;">Dijkstra</a> <a href="/tags/RSA/" style="font-size: 13px;">RSA</a> <a href="/tags/Reverse/" style="font-size: 13px;">Reverse</a> <a href="/tags/SQLi/" style="font-size: 13px;">SQLi</a> <a href="/tags/Web/" style="font-size: 13px;">Web</a> <a href="/tags/algorithm/" style="font-size: 13px;">algorithm</a> <a href="/tags/binary/" style="font-size: 13px;">binary</a> <a href="/tags/debugging/" style="font-size: 13px;">debugging</a> <a href="/tags/graph/" style="font-size: 13px;">graph</a> <a href="/tags/number-theory/" style="font-size: 13px;">number-theory</a> <a href="/tags/payload/" style="font-size: 13px;">payload</a> <a href="/tags/security/" style="font-size: 17px;">security</a> <a href="/tags/shortest-path/" style="font-size: 13px;">shortest-path</a>
+      <a href="/tags/BFS/" style="font-size: 13px;">BFS</a> <a href="/tags/CTF/" style="font-size: 21px;">CTF</a> <a href="/tags/Crypto/" style="font-size: 13px;">Crypto</a> <a href="/tags/Dijkstra/" style="font-size: 13px;">Dijkstra</a> <a href="/tags/RSA/" style="font-size: 13px;">RSA</a> <a href="/tags/Reverse/" style="font-size: 13px;">Reverse</a> <a href="/tags/SQLi/" style="font-size: 13px;">SQLi</a> <a href="/tags/Web/" style="font-size: 13px;">Web</a> <a href="/tags/algorithm/" style="font-size: 17px;">algorithm</a> <a href="/tags/binary/" style="font-size: 13px;">binary</a> <a href="/tags/debugging/" style="font-size: 13px;">debugging</a> <a href="/tags/graph/" style="font-size: 13px;">graph</a> <a href="/tags/number-theory/" style="font-size: 13px;">number-theory</a> <a href="/tags/payload/" style="font-size: 13px;">payload</a> <a href="/tags/python/" style="font-size: 17px;">python</a> <a href="/tags/security/" style="font-size: 17px;">security</a> <a href="/tags/shortest-path/" style="font-size: 13px;">shortest-path</a> <a href="/tags/web/" style="font-size: 13px;">web</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 13px;">动态规划</a>
     </div>
   </div>
 
@@ -596,6 +705,18 @@
       <ul>
         
           <li>
+            <a href="/2026/07/25/algorithm/">动态规划</a>
+          </li>
+        
+          <li>
+            <a href="/2026/07/24/web-bf/">哈希绕过+变量覆盖</a>
+          </li>
+        
+          <li>
+            <a href="/2026/07/23/suanfati/">python算法题记录</a>
+          </li>
+        
+          <li>
             <a href="/2026/07/04/reverse-engineering-first-pass/">Reverse入门巡天：从字符串到控制流</a>
           </li>
         
@@ -605,14 +726,6 @@
         
           <li>
             <a href="/2026/07/04/ctf-web-sql-injection/">CTF Web复盘：SQL注入从异常回显到稳定利用</a>
-          </li>
-        
-          <li>
-            <a href="/2026/07/04/algorithm-graph-search/">图搜索观测笔记：BFS、Dijkstra 与状态空间</a>
-          </li>
-        
-          <li>
-            <a href="/observatory-manifesto/">观测日志：算法与CTF的星图</a>
           </li>
         
       </ul>
@@ -645,7 +758,7 @@
   
     <a href="/archives/" class="mobile-nav-link">归档</a>
   
-    <a href="/about/" class="mobile-nav-link">关于</a>
+    <a href="/about/" class="mobile-nav-link">随记</a>
   
 </nav>
     
@@ -657,15 +770,14 @@
 
   
 <script src="/fancybox/jquery.fancybox.min.js"></script>
+<script defer src="/.js"></script>
 
 
 
 
 <script src="/js/script.js"></script>
 
-
-<script src="/js/cosmic.js"></script>
-
+<script async src="/js/cosmic.js"></script>
 
 
 

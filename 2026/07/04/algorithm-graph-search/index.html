@@ -5,9 +5,14 @@
   
   
   <title>图搜索观测笔记：BFS、Dijkstra 与状态空间 | Drifter Observatory</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="theme-color" content="#06111f">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5, user-scalable=yes">
+  <meta name="theme-color" content="#04050d">
+  <meta name="color-scheme" content="dark">
   <meta name="description" content="Drifter2005 的个人技术博客，记录算法训练、CTF 复盘、密码学与安全工程思考。">
+  <meta name="generator" content="Hexo">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
   <meta name="description" content="图搜索问题的核心不是“套模板”，而是确认状态、边权和剪枝是否被正确建模。只要模型错了，复杂度再漂亮也会偏离真实答案。 BFS：等权宇宙中的波前扩散BFS 适合所有边权相等的最短路。它的正确性来自队列的层序性质：第一次访问某个状态时，已经抵达该状态的最短步数。 1234567891011121314queue&lt;int&gt; q;vector&lt;int&gt; dist(n, -1);di">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图搜索观测笔记：BFS、Dijkstra 与状态空间">
@@ -27,6 +32,8 @@
   
     <link rel="shortcut icon" href="/favicon.svg">
   
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
   
   
 <link rel="stylesheet" href="/css/style.css">
@@ -34,14 +41,20 @@
   
     
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+<link rel="stylesheet" async href="/.css">
 
   
   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+<link rel="stylesheet" async href="/.css">
 
-<meta name="generator" content="Hexo 8.1.2"></head>
+  <style>
+    html { scroll-padding-top: 80px; }
+    body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  </style>
+</head>
 
-<body>
+<body class="page-layout-post">
   <canvas id="starfield" aria-hidden="true"></canvas>
   <div class="cursor-halo" aria-hidden="true"></div>
   <div class="cosmic-background" aria-hidden="true">
@@ -85,7 +98,7 @@
         
           <a class="main-nav-link" href="/archives/">归档</a>
         
-          <a class="main-nav-link" href="/about/">关于</a>
+          <a class="main-nav-link" href="/about/">随记</a>
         
       </nav>
       <nav id="sub-nav">
@@ -105,33 +118,31 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-algorithm-graph-search" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <span class="article-signal">OBSERVATION</span>
-    <a href="/2026/07/04/algorithm-graph-search/" class="article-date">
+        <section id="main"><div class="post-wide-shell">
+  <article id="post-algorithm-graph-search" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    <div class="article-meta">
+      <span class="article-signal">OBSERVATION</span>
+      <a href="/2026/07/04/algorithm-graph-search/" class="article-date">
   <time class="dt-published" datetime="2026-07-04T12:10:00.000Z" itemprop="datePublished">2026-07-04</time>
 </a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/algorithm/">algorithm</a>
-  </div>
-
-  </div>
+    </div>
+  
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+      
+        <header class="article-header">
+          
   
     <h1 class="p-name article-title" itemprop="headline name">
       图搜索观测笔记：BFS、Dijkstra 与状态空间
     </h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+        </header>
       
+      <div class="e-content article-entry" itemprop="articleBody">
         <p>图搜索问题的核心不是“套模板”，而是确认状态、边权和剪枝是否被正确建模。只要模型错了，复杂度再漂亮也会偏离真实答案。</p>
 <h2 id="BFS：等权宇宙中的波前扩散"><a href="#BFS：等权宇宙中的波前扩散" class="headerlink" title="BFS：等权宇宙中的波前扩散"></a>BFS：等权宇宙中的波前扩散</h2><p>BFS 适合所有边权相等的最短路。它的正确性来自队列的层序性质：第一次访问某个状态时，已经抵达该状态的最短步数。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dist</span><span class="params">(n, <span class="number">-1</span>)</span></span>;</span><br><span class="line">dist[s] = <span class="number">0</span>;</span><br><span class="line">q.<span class="built_in">push</span>(s);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">    <span class="type">int</span> u = q.<span class="built_in">front</span>();</span><br><span class="line">    q.<span class="built_in">pop</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> v : g[u]) &#123;</span><br><span class="line">        <span class="keyword">if</span> (dist[v] != <span class="number">-1</span>) <span class="keyword">continue</span>;</span><br><span class="line">        dist[v] = dist[u] + <span class="number">1</span>;</span><br><span class="line">        q.<span class="built_in">push</span>(v);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -176,16 +187,9 @@
 </tbody></table>
 <p>真正的图论训练，是把题面翻译成状态空间的能力。模板只是望远镜，建模才是星图。</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://drifter2005.github.io/2026/07/04/algorithm-graph-search/" data-id="cuidzO2AVE3hWCydEvYnN23fm" data-title="图搜索观测笔记：BFS、Dijkstra 与状态空间" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/" rel="tag">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dijkstra/" rel="tag">Dijkstra</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/graph/" rel="tag">graph</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shortest-path/" rel="tag">shortest-path</a></li></ul>
-
-    </footer>
+      </div>
+    
+    
   </div>
   
     
@@ -212,84 +216,10 @@
 </article>
 
 
+
+
+</div>
 </section>
-        
-          <aside id="sidebar">
-  <div class="sidebar-command">
-    <span class="sidebar-command-kicker">SIDE CONSOLE</span>
-    <strong>快速导航</strong>
-    <p>按分类、标签和时间线检索算法与 CTF 观测记录。</p>
-  </div>
-  
-    
-  <div class="widget-wrap widget-categories">
-    <h3 class="widget-title"><span>Categories</span>分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a><span class="category-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap widget-tags">
-    <h3 class="widget-title"><span>Tags</span>标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFS/" rel="tag">BFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/" rel="tag">CTF</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dijkstra/" rel="tag">Dijkstra</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSA/" rel="tag">RSA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reverse/" rel="tag">Reverse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLi/" rel="tag">SQLi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/binary/" rel="tag">binary</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debugging/" rel="tag">debugging</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graph/" rel="tag">graph</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/number-theory/" rel="tag">number-theory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/payload/" rel="tag">payload</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/" rel="tag">security</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shortest-path/" rel="tag">shortest-path</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap widget-tagcloud">
-    <h3 class="widget-title"><span>Signal Cloud</span>标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/BFS/" style="font-size: 13px;">BFS</a> <a href="/tags/CTF/" style="font-size: 21px;">CTF</a> <a href="/tags/Crypto/" style="font-size: 13px;">Crypto</a> <a href="/tags/Dijkstra/" style="font-size: 13px;">Dijkstra</a> <a href="/tags/RSA/" style="font-size: 13px;">RSA</a> <a href="/tags/Reverse/" style="font-size: 13px;">Reverse</a> <a href="/tags/SQLi/" style="font-size: 13px;">SQLi</a> <a href="/tags/Web/" style="font-size: 13px;">Web</a> <a href="/tags/algorithm/" style="font-size: 13px;">algorithm</a> <a href="/tags/binary/" style="font-size: 13px;">binary</a> <a href="/tags/debugging/" style="font-size: 13px;">debugging</a> <a href="/tags/graph/" style="font-size: 13px;">graph</a> <a href="/tags/number-theory/" style="font-size: 13px;">number-theory</a> <a href="/tags/payload/" style="font-size: 13px;">payload</a> <a href="/tags/security/" style="font-size: 17px;">security</a> <a href="/tags/shortest-path/" style="font-size: 13px;">shortest-path</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/07/">七月 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">五月 2026</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap widget-recent">
-    <h3 class="widget-title"><span>Recent</span>最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2026/07/04/reverse-engineering-first-pass/">Reverse入门巡天：从字符串到控制流</a>
-          </li>
-        
-          <li>
-            <a href="/2026/07/04/crypto-rsa-small-exponent/">Crypto观测笔记：RSA小指数与广播攻击</a>
-          </li>
-        
-          <li>
-            <a href="/2026/07/04/ctf-web-sql-injection/">CTF Web复盘：SQL注入从异常回显到稳定利用</a>
-          </li>
-        
-          <li>
-            <a href="/2026/07/04/algorithm-graph-search/">图搜索观测笔记：BFS、Dijkstra 与状态空间</a>
-          </li>
-        
-          <li>
-            <a href="/observatory-manifesto/">观测日志：算法与CTF的星图</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
         
       </div>
       <footer id="footer">
@@ -314,7 +244,7 @@
   
     <a href="/archives/" class="mobile-nav-link">归档</a>
   
-    <a href="/about/" class="mobile-nav-link">关于</a>
+    <a href="/about/" class="mobile-nav-link">随记</a>
   
 </nav>
     
@@ -326,15 +256,14 @@
 
   
 <script src="/fancybox/jquery.fancybox.min.js"></script>
+<script defer src="/.js"></script>
 
 
 
 
 <script src="/js/script.js"></script>
 
-
-<script src="/js/cosmic.js"></script>
-
+<script async src="/js/cosmic.js"></script>
 
 
 

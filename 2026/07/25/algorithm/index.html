@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>动态规划 | Drifter Observatory</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5, user-scalable=yes">
+  <meta name="theme-color" content="#04050d">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Drifter2005 的个人技术博客，记录算法训练、CTF 复盘、密码学与安全工程思考。">
+  <meta name="generator" content="Hexo">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="description" content="# 动态规划总的来说，动态规划就是将一个问题拆分为许多小问题，用小问题的答案来得到最终的结果，避免重复计算。 序言：在这之前我的刷题逻辑就是在做题网站上随机跳转，跳到什么题做什么，什么算法我都不清楚，我都是把一个仍给ai，学一个某个题的解题思路，昨天霍师傅告诉我可以写一下这个动态规划的汇总，当时我的脑子就有点短路了，动态规划是什么鬼，然后几天我系统搜了一下，原来是DP啊，但是只有前几个类型的还略微">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划">
+<meta property="og:url" content="https://drifter2005.github.io/2026/07/25/algorithm/index.html">
+<meta property="og:site_name" content="Drifter Observatory">
+<meta property="og:description" content="# 动态规划总的来说，动态规划就是将一个问题拆分为许多小问题，用小问题的答案来得到最终的结果，避免重复计算。 序言：在这之前我的刷题逻辑就是在做题网站上随机跳转，跳到什么题做什么，什么算法我都不清楚，我都是把一个仍给ai，学一个某个题的解题思路，昨天霍师傅告诉我可以写一下这个动态规划的汇总，当时我的脑子就有点短路了，动态规划是什么鬼，然后几天我系统搜了一下，原来是DP啊，但是只有前几个类型的还略微">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-25T10:52:49.970Z">
+<meta property="article:modified_time" content="2026-07-25T11:03:15.019Z">
+<meta property="article:author" content="Drifter2005">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="动态规划">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="shortcut icon" href="/favicon.svg">
+  
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+<link rel="stylesheet" async href="/.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+<link rel="stylesheet" async href="/.css">
+
+  <style>
+    html { scroll-padding-top: 80px; }
+    body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  </style>
+</head>
+
+<body class="page-layout-post">
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="cursor-halo" aria-hidden="true"></div>
+  <div class="cosmic-background" aria-hidden="true">
+    <span class="cosmic-orbit orbit-alpha"></span>
+    <span class="cosmic-orbit orbit-beta"></span>
+    <span class="cosmic-orbit orbit-gamma"></span>
+  </div>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div class="cosmic-grid" aria-hidden="true"></div>
+  <div class="cosmic-scanline" aria-hidden="true"></div>
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <div class="hero-kicker">ALGORITHM / CTF / SECURITY RESEARCH</div>
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Drifter Observatory</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">在星云、证明与漏洞之间航行</a>
+        </h2>
+      
+      <div class="hero-metrics" aria-label="research focus">
+        <span>Graph Theory</span>
+        <span>Crypto</span>
+        <span>Reverse</span>
+        <span>Pwn</span>
+      </div>
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/algorithm/">算法星图</a>
+        
+          <a class="main-nav-link" href="/ctf/">CTF档案</a>
+        
+          <a class="main-nav-link" href="/archives/">归档</a>
+        
+          <a class="main-nav-link" href="/about/">随记</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          
+            <a class="nav-icon" target="_blank" rel="noopener" href="https://github.com/Drifter2005"><span class="fa fa-github"></span></a>
+          
+        
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://drifter2005.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><div class="post-wide-shell">
+  <article id="post-algorithm" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    <div class="article-meta">
+      <span class="article-signal">OBSERVATION</span>
+      <a href="/2026/07/25/algorithm/" class="article-date">
+  <time class="dt-published" datetime="2026-07-25T10:52:49.970Z" itemprop="datePublished">2026-07-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      动态规划
+    </h1>
+  
+
+        </header>
+      
+      <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="动态规划"><a href="#动态规划" class="headerlink" title="# 动态规划"></a><strong># 动态规划</strong></h1><p>总的来说，动态规划就是将一个问题拆分为许多小问题，用小问题的答案来得到最终的结果，避免重复计算。</p>
+<h2 id="序言："><a href="#序言：" class="headerlink" title="序言："></a>序言：</h2><p>在这之前我的刷题逻辑就是在做题网站上随机跳转，跳到什么题做什么，什么算法我都不清楚，我都是把一个仍给ai，学一个某个题的解题思路，昨天霍师傅告诉我可以写一下这个动态规划的汇总，当时我的脑子就有点短路了，动态规划是什么鬼，然后几天我系统搜了一下，原来是DP啊，但是只有前几个类型的还略微熟悉一点，到后面几个类型的DP，就算是橙题做起来都十分吃力，看来算法的学习还是要系统地学，之前我的学习方法完完全全就是野路子，虽然入门快，但是上限被大大拉低了。</p>
+<p>原谅我这里放的题目都是绿题以下，因为对我爱说这样可能更好的来理解每一个分类的特点吧。</p>
+<p>再次感谢霍师傅，如果不是这次可能我根本不会这样学习</p>
+<h2 id="1-线性DP"><a href="#1-线性DP" class="headerlink" title="1.线性DP"></a>1.线性DP</h2><p>状态只和前面固定几个位置有关，一维数组一路推到底。</p>
+<p>例题：</p>
+<p>[<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1091">P1091 [NOIP 2004 提高组] 合唱队形 - 洛谷</a>](https:&#x2F;&#x2F;)</p>
+<p>这个题的思路就是看右到左能连起来的数量计算出来，然后左到右连起来的数量计算出来，最后加起来计算最大人数，最后n-最大人数就是出列人数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import sys</span><br><span class="line">data=sys.stdin.read().split()</span><br><span class="line">n=int(data[0])</span><br><span class="line">s=[int(x) for x in data[1:n+1]]</span><br><span class="line">left=[1]*n</span><br><span class="line">for i in range(n):</span><br><span class="line">    for j in range(i):</span><br><span class="line">        if s[j]&lt;s[i]:</span><br><span class="line">            if left[j]+1&gt;left[i]:</span><br><span class="line">                left[i]=left[j]+1</span><br><span class="line">right=[1]*n</span><br><span class="line">for i in range(n-1,-1,-1):</span><br><span class="line">    for j in range(i+1,n):</span><br><span class="line">        if s[i]&gt;s[j]:</span><br><span class="line">            if right[j]+1&gt;right[i]:</span><br><span class="line">                right[i]=right[j]+1</span><br><span class="line">maxs=0</span><br><span class="line">for i in range(n):</span><br><span class="line">    total=left[i]+right[i]-1</span><br><span class="line">    if total&gt;maxs:</span><br><span class="line">        maxs=total</span><br><span class="line">print(n-maxs)</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-背包DP"><a href="#2-背包DP" class="headerlink" title="2.背包DP"></a>2.背包DP</h2><p>简单来理解的话，背包DP就是在一个背包中，如何装才能使背包中的总价值最大</p>
+<p>例题：</p>
+<p><a href="https://"><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/B2173">B2173 多重背包 - 洛谷</a></a></p>
+<p>此时dp[i]代表的是背包容量为i是最大的价值，这个方法不仅天然实现分层，而且可以不断刷到最大值，非常精妙的一种写法（我这不进行最佳写法，只表达出这个题目的思路）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">data=sys.stdin.read().split()</span><br><span class="line">n=int(data[0])</span><br><span class="line">V=int(data[1])</span><br><span class="line">idx=2</span><br><span class="line">dp=[0]*(V+1)</span><br><span class="line">for _ in range(n):</span><br><span class="line">    w=int(data[idx])</span><br><span class="line">    v=int(data[idx+1])</span><br><span class="line">    c=int(data[idx+2])</span><br><span class="line">    idx+=3</span><br><span class="line">    for k in range(c):</span><br><span class="line">        for j in range(V,w-1,-1):</span><br><span class="line">            if dp[j-w]+v&gt;dp[j]:</span><br><span class="line">                dp[j]=dp[j-w]+v</span><br><span class="line">print(dp[V])</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-区间DP"><a href="#3-区间DP" class="headerlink" title="3.区间DP"></a>3.区间DP</h2><p>区间DP是处理一段区间上的最优问题，大区间的答案依赖内部小区间的答案（话说这个地方是不是堆也可以实现相关功能，但是堆好像计算中有冗余的存在。</p>
+<p>例题：</p>
+<p><a href="https://"><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1775">P1775 石子合并（弱化版） - 洛谷</a></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">data=sys.stdin.read().split()</span><br><span class="line">n=int(data[0])</span><br><span class="line">s=[int(x) for x in data[1:n+1]]</span><br><span class="line">pre=[0]*(n+1)</span><br><span class="line">for i in range(1,n+1):</span><br><span class="line">    pre[i]=pre[i-1]+s[i-1]</span><br><span class="line">dp=[[0]*n for _ in range(n)]</span><br><span class="line">for l in range(2,n+1):</span><br><span class="line">    for i in range(0,n-l+1):</span><br><span class="line">        j=i+l-1</span><br><span class="line">        dp[i][j]=float(&#x27;inf&#x27;)</span><br><span class="line">        t=pre[j+1]-pre[i]</span><br><span class="line">        for k in range(i,j):</span><br><span class="line">            cost=dp[i][k]+dp[k+1][j]+t</span><br><span class="line">            if cost&lt;dp[i][j]:</span><br><span class="line">                dp[i][j]=cost</span><br><span class="line">print(dp[0][n-1])</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-记忆化搜索DP"><a href="#4-记忆化搜索DP" class="headerlink" title="4.记忆化搜索DP"></a>4.记忆化搜索DP</h2><p>记忆化搜索是递归加缓存，把递归过程中计算过的结果存起来，下次再遇到直接返回，避免重复计算。</p>
+<p>例题：</p>
+<p>[<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P14337">P14337 [JOI2020 预选赛 R2] 求和 &#x2F; Digit Sum - 洛谷</a>](https:&#x2F;&#x2F;)</p>
+<p>这个题目很有意思，刚看到题目一脸懵逼，愣是没有一点思路，还是在题解之后找到思路，但是好像也不是很难</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">data=sys.stdin.read().split()</span><br><span class="line">n=int(data[0])</span><br><span class="line">f=[0]+82</span><br><span class="line">for i in range(1,n+1):</span><br><span class="line">    t=i</span><br><span class="line">    sum1=0</span><br><span class="line">    while t&gt;0:</span><br><span class="line">        sum1+=t%10</span><br><span class="line">        t//=10</span><br><span class="line">    nx=i+sum1</span><br><span class="line">    if nx&lt;=n+81:</span><br><span class="line">        f[nx]+=f[i]+1</span><br><span class="line">print(f[n]+1)</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-状态压缩-DP"><a href="#5-状态压缩-DP" class="headerlink" title="5.状态压缩 DP"></a>5.状态压缩 DP</h2><p>AI给的解释为：用<strong>二进制位</strong>来表示某些元素的<strong>选择状态</strong>（选&#x2F;没选、走过&#x2F;没走过），把一维状态”压缩”成一个整数。（按照我的理解的话就是带着True 和False的DP）</p>
+<p>例题：</p>
+<p><a href="https://"><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1595">P1595 信封问题 - 洛谷</a></a></p>
+<p>这个题目比较简单，但是应该能也能体现状压DP的特点吧</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">data=sys.stdin.read().split()</span><br><span class="line">n=int(data[0])</span><br><span class="line">if n==1:</span><br><span class="line">    print(0)</span><br><span class="line">elif n==2:</span><br><span class="line">    print(1)</span><br><span class="line">else:</span><br><span class="line">    a,b=0,1</span><br><span class="line">    for i in range(3,n+1):</span><br><span class="line">        a,b=b,(i-1)*(b+a)</span><br><span class="line">    print(b)</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-树形DP"><a href="#6-树形DP" class="headerlink" title="6.树形DP"></a>6.树形DP</h2><p>这是我第一次尝试这个树形DP的题目，按照我的简单理解就是在树的结构上继续动态规划，树形DP是后序遍历（先处理完所有子节点然后再处理父亲节点）</p>
+<p>这是一般模板</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">def dfs(u, parent):</span><br><span class="line">    &quot;&quot;&quot;处理以 u 为根的子树，parent 是 u 的父节点，防止往回走&quot;&quot;&quot;</span><br><span class="line">  </span><br><span class="line">    # 1. 初始化 u 的状态</span><br><span class="line">    dp[u][某状态] = 初始值</span><br><span class="line">  </span><br><span class="line">    # 2. 遍历所有子节点</span><br><span class="line">    for v in tree[u]:          # tree[u] 存 u 的所有邻居</span><br><span class="line">        if v == parent:        # 跳过父节点，防止循环</span><br><span class="line">            continue</span><br><span class="line">        dfs(v, u)              # 先递归处理子节点</span><br><span class="line">  </span><br><span class="line">    # 3. 根据子节点的结果，更新 u 的状态</span><br><span class="line">    for v in tree[u]:</span><br><span class="line">        if v == parent:</span><br><span class="line">            continue</span><br><span class="line">        dp[u][某状态] = 组合(dp[v][某状态])</span><br></pre></td></tr></table></figure>
+
+<p>例题：</p>
+<p><a href="https://"><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1481">P1481 魔族密码 - 洛谷</a></a></p>
+<p>这是一个简单的树形DP题目（其实用线性DP也能做，但是我觉得这个用来方便理解树形DP很好，在这里就放一下这个题）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">data=sys.stdin.read().split()</span><br><span class="line">n=int(data[0])</span><br><span class="line">s=data[1:n+1]</span><br><span class="line">maxn=2000*75+5</span><br><span class="line">child=[[0]*26 for _ in range(maxn)]</span><br><span class="line">ml=[0]*maxn</span><br><span class="line">nc=0</span><br><span class="line">ans=0</span><br><span class="line">for i in range(n):</span><br><span class="line">    u=0</span><br><span class="line">    best=0</span><br><span class="line">    for ch in s[i]:</span><br><span class="line">        c=ord(ch)-97</span><br><span class="line">        if child[u][c]==0:</span><br><span class="line">            nc+=1</span><br><span class="line">            child[u][c]=nc</span><br><span class="line">        u=child[u][c]</span><br><span class="line">        if ml[u]&gt;best:</span><br><span class="line">            best=ml[u]</span><br><span class="line">    curl=best+1</span><br><span class="line">    ml[u]=curl</span><br><span class="line">    if curl&gt;ans:</span><br><span class="line">        ans=curl</span><br><span class="line">print(ans)</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-数位DP"><a href="#7-数位DP" class="headerlink" title="7.数位DP"></a>7.数位DP</h2><p>简单理解就是按照数位 来进行动态规划，把数字分开，按位处理</p>
+<p>例题：</p>
+<p>[<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P10697">P10697 [SNCPC2024] 消失的数字 - 洛谷</a>](https:&#x2F;&#x2F;)</p>
+<p>这个题，em~很牛逼的一个题，这个方向我也是第一次了解，在题解中尽量理解这个思路，我快气死了，今天做的这些题怎么感觉这么不顺利，果然我还是一条本质菜逼，经过大量尝试，按照题解思路来还是超时，给他了，我放弃这个题了，为什么一个橙题做起来这么怪呢</p>
+<p>[<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1708">P1708 [入门赛 #21] 星云 hard ver. - 洛谷</a>](https:&#x2F;&#x2F;)</p>
+<p>还是来试试这个吧，虽然这是个黄题，但是感觉比上一个简单一点，放一个ai版的吧，自己写的下次不一定还能看懂😓</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line"></span><br><span class="line">MAX_N = 7</span><br><span class="line">MAX_K = 100</span><br><span class="line"></span><br><span class="line"># 预处理</span><br><span class="line">dp = [[0] * (MAX_K + 1) for _ in range(MAX_N + 1)]</span><br><span class="line">for d in range(1, 10):</span><br><span class="line">    dp[1][d] = 1</span><br><span class="line"></span><br><span class="line">for length in range(2, MAX_N + 1):</span><br><span class="line">    for s in range(1, MAX_K + 1):</span><br><span class="line">        for d in range(10):</span><br><span class="line">            if s &gt;= d:</span><br><span class="line">                dp[length][s] += dp[length-1][s-d]</span><br><span class="line"></span><br><span class="line"># 前缀和</span><br><span class="line">for length in range(1, MAX_N + 1):</span><br><span class="line">    for s in range(1, MAX_K + 1):</span><br><span class="line">        dp[length][s] += dp[length][s-1]</span><br><span class="line"></span><br><span class="line"># ans[n][k]</span><br><span class="line">ans = [[0] * (MAX_K + 1) for _ in range(MAX_N + 1)]</span><br><span class="line">for n in range(1, MAX_N + 1):</span><br><span class="line">    for k in range(1, MAX_K + 1):</span><br><span class="line">        for length in range(1, n + 1):</span><br><span class="line">            ans[n][k] += dp[length][k]</span><br><span class="line"></span><br><span class="line"># 查询</span><br><span class="line">data = sys.stdin.buffer.read().split()</span><br><span class="line">T = int(data[0])</span><br><span class="line">out = []</span><br><span class="line">idx = 1</span><br><span class="line">for _ in range(T):</span><br><span class="line">    n = int(data[idx])</span><br><span class="line">    k = int(data[idx + 1])</span><br><span class="line">    idx += 2</span><br><span class="line">    out.append(str(ans[n][k]))</span><br><span class="line"></span><br><span class="line">sys.stdout.write(&#x27;\n&#x27;.join(out))</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-期望DP"><a href="#8-期望DP" class="headerlink" title="8.期望DP"></a>8.期望DP</h2><p>用DP求某个随机过程的期望值</p>
+<p>没找到相关的题目，用这个来继续理解吧</p>
+<p><strong>问题</strong>：不断掷一个公平骰子，累积点数，当总点数 ≥ n 时停止。求期望掷骰次数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">n = int(input())</span><br><span class="line">dp = [0] * (n + 6 + 1)  </span><br><span class="line">for i in range(n - 1, -1, -1):</span><br><span class="line">    total = 0</span><br><span class="line">    for d in range(1, 7):</span><br><span class="line">        total += dp[i + d]</span><br><span class="line">    dp[i] = 1 + total / 6</span><br><span class="line">print(dp[0])</span><br></pre></td></tr></table></figure>
+
+      </div>
+    
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2026/07/24/web-bf/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">哈希绕过+变量覆盖</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+</div>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 Drifter2005<br>
+      Built with <a href="https://hexo.io/" target="_blank">Hexo</a>. Calibrated for algorithms, CTF writeups, and long-range curiosity.
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/algorithm/" class="mobile-nav-link">算法星图</a>
+  
+    <a href="/ctf/" class="mobile-nav-link">CTF档案</a>
+  
+    <a href="/archives/" class="mobile-nav-link">归档</a>
+  
+    <a href="/about/" class="mobile-nav-link">随记</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+<script defer src="/.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+<script async src="/js/cosmic.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
