@@ -1535,6 +1535,140 @@ a.article-comment-link:hover .fa {
     gap: 12px;
   }
 }
+.like-btn {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-box;
+  display: inline-flex;
+  position: relative;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border: 1px solid rgba(116,247,209,0.28);
+  border-radius: 999px;
+  background: rgba(116,247,209,0.07);
+  color: #dcecff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-transition: border-color 0.18s ease, background 0.18s ease;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+.like-btn:hover {
+  border-color: rgba(116,247,209,0.5);
+  background: rgba(116,247,209,0.14);
+}
+.like-btn:active .like-icon {
+  -webkit-transform: scale(0.85);
+  transform: scale(0.85);
+}
+.like-btn.has-likes {
+  border-color: rgba(255,107,107,0.4);
+  background: rgba(255,107,107,0.1);
+}
+.like-btn .like-icon {
+  font-size: 15px;
+  line-height: 1;
+  display: inline-block;
+  -webkit-animation: likeHeartBeat 0.45s ease-out;
+  animation: likeHeartBeat 0.45s ease-out;
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+.like-btn .like-count {
+  min-width: 1.2em;
+  text-align: left;
+  font-variant-numeric: tabular-nums;
+}
+.like-btn .like-icon {
+  -webkit-animation-play-state: running;
+  animation-play-state: running;
+}
+.like-burst {
+  position: absolute;
+  left: 12px;
+  top: -4px;
+  color: #ff6b6b;
+  font-size: 13px;
+  pointer-events: none;
+  -webkit-animation: likeBurst 0.7s ease-out forwards;
+  animation: likeBurst 0.7s ease-out forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .like-btn .like-icon {
+    -webkit-animation: none !important;
+    animation: none !important;
+  }
+  .like-burst {
+    display: none;
+  }
+}
+@-webkit-keyframes likeHeartBeat {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  35% {
+    -webkit-transform: scale(1.35);
+    transform: scale(1.35);
+  }
+  70% {
+    -webkit-transform: scale(0.92);
+    transform: scale(0.92);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes likeHeartBeat {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  35% {
+    -webkit-transform: scale(1.35);
+    transform: scale(1.35);
+  }
+  70% {
+    -webkit-transform: scale(0.92);
+    transform: scale(0.92);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes likeBurst {
+  0% {
+    opacity: 0.9;
+    -webkit-transform: translateY(0) scale(1);
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(-26px) scale(1.4);
+    transform: translateY(-26px) scale(1.4);
+  }
+}
+@keyframes likeBurst {
+  0% {
+    opacity: 0.9;
+    -webkit-transform: translateY(0) scale(1);
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(-26px) scale(1.4);
+    transform: translateY(-26px) scale(1.4);
+  }
+}
 #music-player-host {
   z-index: 999;
   position: fixed;
@@ -1661,10 +1795,6 @@ body {
 body.player-hidden {
   padding-bottom: 0;
 }
-body.music-playing .aplayer-pic {
-  -webkit-animation: aplayer-rotation 3s linear infinite !important;
-  animation: aplayer-rotation 3s linear infinite !important;
-}
 .aplayer-mask {
   background: -webkit-linear-gradient(left, rgba(4,11,23,0.8), transparent) !important;
   background: linear-gradient(to right, rgba(4,11,23,0.8), transparent) !important;
@@ -1780,26 +1910,6 @@ body.player-no-anim .player-toggle {
   body.music-playing .aplayer-pic {
     -webkit-animation: none !important;
     animation: none !important;
-  }
-}
-@-webkit-keyframes aplayer-rotation {
-  from {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-@keyframes aplayer-rotation {
-  from {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
   }
 }
 @-webkit-keyframes playerNotePulse {
