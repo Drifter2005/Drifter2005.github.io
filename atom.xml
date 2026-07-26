@@ -6,7 +6,7 @@
   <link href="https://drifter2005.github.io/atom.xml" rel="self"/>
   
   <link href="https://drifter2005.github.io/"/>
-  <updated>2026-07-25T03:03:15.019Z</updated>
+  <updated>2026-07-26T04:59:50.679Z</updated>
   <id>https://drifter2005.github.io/</id>
   
   <author>
@@ -21,19 +21,20 @@
     <link href="https://drifter2005.github.io/2026/07/25/algorithm/"/>
     <id>https://drifter2005.github.io/2026/07/25/algorithm/</id>
     <published>2026-07-25T02:52:49.970Z</published>
-    <updated>2026-07-25T03:03:15.019Z</updated>
+    <updated>2026-07-26T04:59:50.679Z</updated>
     
     
       
       
-    <summary type="html">&lt;h1 id=&quot;动态规划&quot;&gt;&lt;a href=&quot;#动态规划&quot; class=&quot;headerlink&quot; title=&quot;# 动态规划&quot;&gt;&lt;/a&gt;&lt;strong&gt;# 动态规划&lt;/strong&gt;&lt;/h1&gt;&lt;p&gt;总的来说，动态规划就是将一个问题拆分为许多小问题，用小问题的答案来得到最终的结果，</summary>
+    <summary type="html">&lt;h1 id=&quot;动态规划&quot;&gt;&lt;a href=&quot;#动态规划&quot; class=&quot;headerlink&quot; title=&quot;动态规划&quot;&gt;&lt;/a&gt;动态规划&lt;/h1&gt;&lt;p&gt;总的来说，动态规划就是将一个问题拆分为许多小问题，用小问题的答案来得到最终的结果，避免重复计算。&lt;/p&gt;
+&lt;h2 id=&quot;序</summary>
       
     
     
-    
-    <category term="算法" scheme="https://drifter2005.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     <category term="algorithm" scheme="https://drifter2005.github.io/categories/algorithm/"/>
+    
+    <category term="算法" scheme="https://drifter2005.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
     <category term="python" scheme="https://drifter2005.github.io/tags/python/"/>
@@ -94,7 +95,7 @@
     <link href="https://drifter2005.github.io/2026/07/04/reverse-engineering-first-pass/"/>
     <id>https://drifter2005.github.io/2026/07/04/reverse-engineering-first-pass/</id>
     <published>2026-07-04T13:00:00.000Z</published>
-    <updated>2026-07-26T12:57:19.320Z</updated>
+    <updated>2026-07-26T13:30:04.050Z</updated>
     
     
       
@@ -123,7 +124,7 @@
     <link href="https://drifter2005.github.io/2026/07/04/crypto-rsa-small-exponent/"/>
     <id>https://drifter2005.github.io/2026/07/04/crypto-rsa-small-exponent/</id>
     <published>2026-07-04T12:40:00.000Z</published>
-    <updated>2026-07-26T12:57:19.320Z</updated>
+    <updated>2026-07-26T13:30:04.050Z</updated>
     
     
       
@@ -152,7 +153,7 @@
     <link href="https://drifter2005.github.io/2026/07/04/algorithm-graph-search/"/>
     <id>https://drifter2005.github.io/2026/07/04/algorithm-graph-search/</id>
     <published>2026-07-04T12:10:00.000Z</published>
-    <updated>2026-07-26T12:57:19.319Z</updated>
+    <updated>2026-07-26T13:30:04.050Z</updated>
     
     
       
@@ -195,13 +196,13 @@
     <category term="CTF" scheme="https://drifter2005.github.io/categories/CTF/"/>
     
     
+    <category term="security" scheme="https://drifter2005.github.io/tags/security/"/>
+    
     <category term="Web" scheme="https://drifter2005.github.io/tags/Web/"/>
     
     <category term="SQLi" scheme="https://drifter2005.github.io/tags/SQLi/"/>
     
     <category term="payload" scheme="https://drifter2005.github.io/tags/payload/"/>
-    
-    <category term="security" scheme="https://drifter2005.github.io/tags/security/"/>
     
   </entry>
   
@@ -226,9 +227,9 @@
     
     <category term="CTF" scheme="https://drifter2005.github.io/tags/CTF/"/>
     
-    <category term="security" scheme="https://drifter2005.github.io/tags/security/"/>
-    
     <category term="algorithm" scheme="https://drifter2005.github.io/tags/algorithm/"/>
+    
+    <category term="security" scheme="https://drifter2005.github.io/tags/security/"/>
     
   </entry>
   
