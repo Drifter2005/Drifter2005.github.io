@@ -2,20 +2,28 @@
 (function() {
   'use strict';
 
+  // 等待DOM完全加载
+  function initPlayer() {
+    const container = document.getElementById('aplayer');
+    if (!container) {
+      setTimeout(initPlayer, 100);
+      return;
+    }
+
   // APlayer配置
   const aplayer = new APlayer({
-    container: document.getElementById('aplayer'),
+    container: container,
     fixed: true,
     autoplay: false,
     theme: '#74f7d1',
     loop: 'all',
-    order: 'random',
-    preload: 'auto',
+    order: 'list',
+    preload: 'metadata',
     volume: 0.7,
     mutex: true,
     listFolded: false,
     listMaxHeight: 340,
-    lrcType: 3,
+    lrcType: 0,
     audio: [
       {
         name: '一格格',
@@ -75,21 +83,29 @@
     storageName: 'aplayer-settings'
   });
 
-  // 播放器事件监听
-  aplayer.on('play', () => {
-    document.body.classList.add('music-playing');
-  });
+    // 播放器事件监听
+    aplayer.on('play', () => {
+      document.body.classList.add('music-playing');
+    });
 
-  aplayer.on('pause', () => {
-    document.body.classList.remove('music-playing');
-  });
+    aplayer.on('pause', () => {
+      document.body.classList.remove('music-playing');
+    });
 
-  aplayer.on('error', () => {
-    console.warn('播放器错误：请检查音乐链接');
-  });
+    aplayer.on('error', (e) => {
+      console.error('🎵 播放器错误:', e);
+    });
 
-  // 暴露到全局作用域
-  window.aplayer = aplayer;
+    // 暴露到全局作用域
+    window.aplayer = aplayer;
 
-  console.log('🎵 音乐播放器已加载');
+    console.log('🎵 音乐播放器已加载，共' + aplayer.audio.length + '首歌');
+  }
+
+  // 页面加载完成后初始化播放器
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPlayer);
+  } else {
+    initPlayer();
+  }
 })();
