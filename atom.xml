@@ -6,7 +6,7 @@
   <link href="https://drifter2005.github.io/atom.xml" rel="self"/>
   
   <link href="https://drifter2005.github.io/"/>
-  <updated>2026-08-08T12:32:01.675Z</updated>
+  <updated>2026-08-08T12:53:55.321Z</updated>
   <id>https://drifter2005.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>title</title>
+    <title>小岛经济学</title>
     <link href="https://drifter2005.github.io/2026/08/08/island-economy/"/>
     <id>https://drifter2005.github.io/2026/08/08/island-economy/</id>
     <published>2026-08-08T12:31:36.819Z</published>
-    <updated>2026-08-08T12:32:01.675Z</updated>
+    <updated>2026-08-08T12:53:55.321Z</updated>
     
     
       
@@ -132,9 +132,9 @@
     <category term="algorithm" scheme="https://drifter2005.github.io/categories/algorithm/"/>
     
     
-    <category term="algorithm" scheme="https://drifter2005.github.io/tags/algorithm/"/>
-    
     <category term="python" scheme="https://drifter2005.github.io/tags/python/"/>
+    
+    <category term="algorithm" scheme="https://drifter2005.github.io/tags/algorithm/"/>
     
   </entry>
   
@@ -143,7 +143,7 @@
     <link href="https://drifter2005.github.io/2026/07/04/reverse-engineering-first-pass/"/>
     <id>https://drifter2005.github.io/2026/07/04/reverse-engineering-first-pass/</id>
     <published>2026-07-04T13:00:00.000Z</published>
-    <updated>2026-08-08T20:52:57.360Z</updated>
+    <updated>2026-08-08T20:54:22.152Z</updated>
     
     
       
@@ -172,7 +172,7 @@
     <link href="https://drifter2005.github.io/2026/07/04/crypto-rsa-small-exponent/"/>
     <id>https://drifter2005.github.io/2026/07/04/crypto-rsa-small-exponent/</id>
     <published>2026-07-04T12:40:00.000Z</published>
-    <updated>2026-08-08T20:52:57.360Z</updated>
+    <updated>2026-08-08T20:54:22.152Z</updated>
     
     
       
@@ -186,13 +186,13 @@
     <category term="CTF" scheme="https://drifter2005.github.io/categories/CTF/"/>
     
     
-    <category term="CTF" scheme="https://drifter2005.github.io/tags/CTF/"/>
-    
     <category term="Crypto" scheme="https://drifter2005.github.io/tags/Crypto/"/>
     
     <category term="RSA" scheme="https://drifter2005.github.io/tags/RSA/"/>
     
     <category term="number-theory" scheme="https://drifter2005.github.io/tags/number-theory/"/>
+    
+    <category term="CTF" scheme="https://drifter2005.github.io/tags/CTF/"/>
     
   </entry>
   
@@ -201,7 +201,7 @@
     <link href="https://drifter2005.github.io/2026/07/04/algorithm-graph-search/"/>
     <id>https://drifter2005.github.io/2026/07/04/algorithm-graph-search/</id>
     <published>2026-07-04T12:10:00.000Z</published>
-    <updated>2026-08-08T20:52:57.360Z</updated>
+    <updated>2026-08-08T20:54:22.152Z</updated>
     
     
       
@@ -244,13 +244,13 @@
     <category term="CTF" scheme="https://drifter2005.github.io/categories/CTF/"/>
     
     
-    <category term="security" scheme="https://drifter2005.github.io/tags/security/"/>
-    
     <category term="Web" scheme="https://drifter2005.github.io/tags/Web/"/>
     
     <category term="SQLi" scheme="https://drifter2005.github.io/tags/SQLi/"/>
     
     <category term="payload" scheme="https://drifter2005.github.io/tags/payload/"/>
+    
+    <category term="security" scheme="https://drifter2005.github.io/tags/security/"/>
     
   </entry>
   
@@ -273,11 +273,11 @@
     <category term="notes" scheme="https://drifter2005.github.io/categories/notes/"/>
     
     
-    <category term="algorithm" scheme="https://drifter2005.github.io/tags/algorithm/"/>
-    
     <category term="CTF" scheme="https://drifter2005.github.io/tags/CTF/"/>
     
     <category term="security" scheme="https://drifter2005.github.io/tags/security/"/>
+    
+    <category term="algorithm" scheme="https://drifter2005.github.io/tags/algorithm/"/>
     
   </entry>
   
