@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>title | Drifter Observatory</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5, user-scalable=yes">
+  <meta name="theme-color" content="#04050d">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://drifter2005.github.io/2026/08/08/island-economy/">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="description" content="《小岛经济学》前言《小岛经济学》是个很不错的图书，它通过简单的说明就能把部分经济和社会的运行规律解释得十分清楚，接下来我将分享这本书的核心摘要和我自己的见解，希望对可以看到我这个博客的人有所帮助。 正篇对所有物种而言（人类除外），经济学其实可以简单理解为日常生存活动。食物短缺、天气恶劣、食肉动物的威胁、疾病的困扰、发明">
+<meta property="og:type" content="article">
+<meta property="og:title" content="title">
+<meta property="og:url" content="https://drifter2005.github.io/2026/08/08/island-economy/">
+<meta property="og:site_name" content="Drifter Observatory">
+<meta property="og:description" content="《小岛经济学》前言《小岛经济学》是个很不错的图书，它通过简单的说明就能把部分经济和社会的运行规律解释得十分清楚，接下来我将分享这本书的核心摘要和我自己的见解，希望对可以看到我这个博客的人有所帮助。 正篇对所有物种而言（人类除外），经济学其实可以简单理解为日常生存活动。食物短缺、天气恶劣、食肉动物的威胁、疾病的困扰、发明">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-08T12:31:36.819Z">
+<meta property="article:modified_time" content="2026-08-08T12:32:01.675Z">
+<meta property="article:author" content="Drifter2005">
+<meta property="article:tag" content="金融">
+<meta property="article:tag" content="阅读">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Drifter Observatory" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.svg">
+  
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css?v=fe194577e3">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body class="page-layout-post">
+  <a class="skip-link" href="#content-outer">跳到正文</a>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="cursor-halo" aria-hidden="true"></div>
+  <div class="cosmic-background" aria-hidden="true">
+    <span class="cosmic-orbit orbit-alpha"></span>
+    <span class="cosmic-orbit orbit-beta"></span>
+    <span class="cosmic-orbit orbit-gamma"></span>
+  </div>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div class="cosmic-grid" aria-hidden="true"></div>
+  <div class="cosmic-scanline" aria-hidden="true"></div>
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <div class="hero-kicker">ALGORITHM / CTF / SECURITY RESEARCH</div>
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Drifter Observatory</a>
+      </h1>
+      
+        
+        <p id="subtitle-wrap">
+          <a href="/" id="subtitle">在星云、证明与漏洞之间航行</a>
+        </p>
+      
+      <div class="hero-metrics" aria-label="research focus">
+        <span>Graph Theory</span>
+        <span>Crypto</span>
+        <span>Reverse</span>
+        <span>Pwn</span>
+      </div>
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav" aria-label="主导航">
+        <button id="main-nav-toggle" class="nav-icon" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="mobile-nav"><span class="fa fa-bars" aria-hidden="true"></span></button>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/algorithm/">算法星图</a>
+        
+          <a class="main-nav-link" href="/ctf/">CTF档案</a>
+        
+          <a class="main-nav-link" href="/archives/">归档</a>
+        
+          <a class="main-nav-link" href="/about/">随记</a>
+        
+      </nav>
+      <nav id="sub-nav" aria-label="外部链接与搜索">
+        
+          
+            <a class="nav-icon" target="_blank" rel="noopener" href="https://github.com/Drifter2005" aria-label="github"><span class="fa fa-github" aria-hidden="true"></span></a>
+          
+        
+        
+        <button class="nav-icon nav-search-btn" type="button" aria-label="搜索" aria-expanded="false"><span class="fa fa-search" aria-hidden="true"></span></button>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form" role="search">
+          <label class="sr-only" for="site-search-input">搜索</label>
+          <input type="search" id="site-search-input" name="q" class="search-form-input" placeholder="搜索">
+          <button type="submit" class="search-form-submit" aria-label="搜索"><span class="fa fa-search" aria-hidden="true"></span></button>
+          <input type="hidden" name="sitesearch" value="https://drifter2005.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer" id="content-outer">
+        <section id="main"><div class="post-wide-shell">
+  <article id="post-island-economy" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    <div class="article-meta">
+      <span class="article-signal">OBSERVATION</span>
+      <a href="/2026/08/08/island-economy/" class="article-date">
+  <time class="dt-published" datetime="2026-08-08T12:31:36.819Z" itemprop="datePublished">2026-08-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      
+        <header class="article-header">
+          
+
+
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      title
+    </h1>
+  
+
+        </header>
+      
+      <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="《小岛经济学》"><a href="#《小岛经济学》" class="headerlink" title="《小岛经济学》"></a>《小岛经济学》</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>《小岛经济学》是个很不错的图书，它通过简单的说明就能把部分经济和社会的运行规律解释得十分清楚，接下来我将分享这本书的核心摘要和我自己的见解，希望对可以看到我这个博客的人有所帮助。</p>
+<h2 id="正篇"><a href="#正篇" class="headerlink" title="正篇"></a>正篇</h2><p>对所有物种而言（人类除外），经济学其实可以简单理解为日常生存活动。食物短缺、天气恶劣、食肉动物的威胁、疾病的困扰、发明相对较少、忍饥挨饿地活着（有一点儿剩余时间进行再生产），这是所有动物的生存常态。所幸我们人类拥有两样东西——我们的大脑和灵巧的双手，否则我们的命运跟那些动物不会有什么分别（在不太久远的过去，我们跟它们是一样的）。靠着大脑和灵巧的双手，我们制造了工具和机器，改造环境的能力大大提高。<strong>努力使有限的资源（每种资源都是有限的）产生最大的效益以尽可能满足人类的需求，这就是经济这一概念最简单的定义</strong>。工具、资本以及创新是实现这一目标的关键。牢记这一点，我们就很容易理解经济增长的原因：找到了生产人类所需物品的更好方式。不管一个经济体最后变得多么强大，这个原因是不会改变的。</p>
+<p>在现代经济学中有一个理论认为，利润是通过少付工人工资产生的，有人称之为“劳动价值论”。这个理念与道德取舍息息相关，但与现实无甚关联。富人致富的原因（至少开始时）是他们为他人提供了有<strong>价值</strong>的东西。艾伯就为那些没有足够储蓄的人提供了储蓄。如果他赢利了，那也是因为他提供的服务对别人是有价值的。</p>
+<p>为了开展许多政治家和社会理论家眼中的有益活动，政府总会通过各种形式干预储蓄的配置，包括政府贷款担保、公司及个人税收减免以及税务罚款等。这些政策的关键推动因素就是认为政府规划者要比储蓄者更清楚什么有利于社会发展的观念。但是，并没有证据表明事实就是这样。实际上，历史上充斥着各种浮夸的政策与方案，这些方案都是政府智囊团策划的，最终全都没有兑现它们的诺言。更重要的是，政府介入储蓄者和借款人之间采取的强制手段将借款的原因与结果割裂开来，使得储蓄的分配效率极为低下。影响个体贷款人的往往是贷款的财务结果，而不是基本活动的政治象征意义。而那些遵循成功模式并由业绩记录良好的所有者经营的企业，还贷率往往较高。因此，这种类型的企业规划更容易吸引贷款人。这与达尔文的观点相似，即自然选择催生了生命力更强的物种，这种借贷原则催生出更加健康的企业和更加强劲的经济。如果财务状况被视为次要因素，这种情况也就不存在了。贷给个人或者企业的款项如果无法成功促成必要的创新或者提高产能，就会浪费储蓄的供给，削弱整体经济。但我们在本书后面的内容中会发现，不断扩大货币供应量的做法以及政府看似无限的负债能力掩盖了一个事实——实际信贷是受有限储备制约的。现在，人们都认为信贷市场的有效运作所需要的就是有意愿的借款人。然而，与其他资源一样，在发放贷款前必须先积累储蓄才行。</p>
+<p>消费只是我们用来衡量生产的尺度，因为所有生产出来的东西最终都是用于消费的。那么消费有什么实际意义呢？只要价格降得足够低，即便是没人想要的东西也可以卖出去。但是，如果没有生产，也就没有东西可消费了。因此，<strong>生产是有价值的。储蓄创造了资本，而资本使生产扩大成为可能</strong>，所以储蓄起来的一美元对经济<br>产生的积极影响要大于消费掉的一美元。</p>
+<p>劳动的价值通常取决于劳动者所使用的资本。资本越优化，劳动的价值就越大。一名员工的具体价值主要取决于三个方面：<strong>需求</strong>（雇主是否需要这名员工所掌握的技能）、<strong>供应</strong>（有多少人具备这些技能）以及<strong>生产力</strong>（这名员工对那些任务的完成程度如何）。要想获得较高的薪资，这位员工必须提高其自身价值，要么掌握极少数人具备的急需技能（如医生），要么通过对本职工作精益求精来提高生产力，根本无捷径可走。</p>
+
+      </div>
+    
+    
+    <footer class="article-footer">
+      <a data-url="https://drifter2005.github.io/2026/08/08/island-economy/" data-id="cuidpDU0iM00AX3deZyfo29f8" data-title="title" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      <button class="like-btn" type="button" data-post="/2026/08/08/island-economy/" title="点赞（可以点很多次）" aria-label="点赞此文章">
+        <span class="like-icon" aria-hidden="true">❤️</span>
+        <span class="like-count">0</span>
+      </button>
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%87%91%E8%9E%8D/" rel="tag">金融</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%98%85%E8%AF%BB/" rel="tag">阅读</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2026/07/26/long-cycle/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">大周期-不确定时代的确定性法则</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+</div>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 Drifter2005<br>
+      Built with <a href="https://hexo.io/" target="_blank">Hexo</a>. Calibrated for algorithms, CTF writeups, and long-range curiosity.
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/algorithm/" class="mobile-nav-link">算法星图</a>
+  
+    <a href="/ctf/" class="mobile-nav-link">CTF档案</a>
+  
+    <a href="/archives/" class="mobile-nav-link">归档</a>
+  
+    <a href="/about/" class="mobile-nav-link">随记</a>
+  
+</nav>
+    
+
+<!-- 音乐播放器容器（id 不用 "aplayer"：那会在 window 上创建同名全局引用，与脚本判断冲突） -->
+<div id="music-player-host"></div>
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+<!-- APlayer 音乐播放器脚本 -->
+
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+
+
+
+  
+  <script defer src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+<script src="/js/script.js?v=d1f87a3c68"></script>
+<script src="/js/likes.js?v=203bd075f5"></script>
+<script src="/js/music-player.js?v=a53105608f"></script>
+<script src="/js/cosmic.js?v=62bf6fac89"></script>
+<script src="/js/pjax.js?v=b47d2e2801"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
