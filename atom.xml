@@ -6,7 +6,7 @@
   <link href="https://drifter2005.github.io/atom.xml" rel="self"/>
   
   <link href="https://drifter2005.github.io/"/>
-  <updated>2026-08-08T12:53:55.321Z</updated>
+  <updated>2026-08-27T19:32:12.607Z</updated>
   <id>https://drifter2005.github.io/</id>
   
   <author>
@@ -15,6 +15,49 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>title</title>
+    <link href="https://drifter2005.github.io/2026/08/27/,/"/>
+    <id>https://drifter2005.github.io/2026/08/27/,/</id>
+    <published>2026-08-27T18:39:06.749Z</published>
+    <updated>2026-08-27T19:32:12.607Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;,&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>title</title>
+    <link href="https://drifter2005.github.io/2026/08/26/rich%20and%20poor%20dad/"/>
+    <id>https://drifter2005.github.io/2026/08/26/rich%20and%20poor%20dad/</id>
+    <published>2026-08-26T18:54:11.515Z</published>
+    <updated>2026-08-27T18:14:33.268Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;穷爸爸-富爸爸&quot;&gt;&lt;a href=&quot;#穷爸爸-富爸爸&quot; class=&quot;headerlink&quot; title=&quot;穷爸爸 富爸爸&quot;&gt;&lt;/a&gt;穷爸爸 富爸爸&lt;/h1&gt;&lt;h2 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引</summary>
+      
+    
+    
+    
+    <category term="随笔" scheme="https://drifter2005.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="随笔" scheme="https://drifter2005.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="阅读" scheme="https://drifter2005.github.io/tags/%E9%98%85%E8%AF%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>小岛经济学</title>
@@ -143,7 +186,7 @@
     <link href="https://drifter2005.github.io/2026/07/04/reverse-engineering-first-pass/"/>
     <id>https://drifter2005.github.io/2026/07/04/reverse-engineering-first-pass/</id>
     <published>2026-07-04T13:00:00.000Z</published>
-    <updated>2026-08-08T20:54:22.152Z</updated>
+    <updated>2026-08-28T03:32:30.045Z</updated>
     
     
       
@@ -172,7 +215,7 @@
     <link href="https://drifter2005.github.io/2026/07/04/crypto-rsa-small-exponent/"/>
     <id>https://drifter2005.github.io/2026/07/04/crypto-rsa-small-exponent/</id>
     <published>2026-07-04T12:40:00.000Z</published>
-    <updated>2026-08-08T20:54:22.152Z</updated>
+    <updated>2026-08-28T03:32:30.045Z</updated>
     
     
       
@@ -201,7 +244,7 @@
     <link href="https://drifter2005.github.io/2026/07/04/algorithm-graph-search/"/>
     <id>https://drifter2005.github.io/2026/07/04/algorithm-graph-search/</id>
     <published>2026-07-04T12:10:00.000Z</published>
-    <updated>2026-08-08T20:54:22.152Z</updated>
+    <updated>2026-08-28T03:32:30.045Z</updated>
     
     
       
@@ -244,13 +287,13 @@
     <category term="CTF" scheme="https://drifter2005.github.io/categories/CTF/"/>
     
     
+    <category term="security" scheme="https://drifter2005.github.io/tags/security/"/>
+    
     <category term="Web" scheme="https://drifter2005.github.io/tags/Web/"/>
     
     <category term="SQLi" scheme="https://drifter2005.github.io/tags/SQLi/"/>
     
     <category term="payload" scheme="https://drifter2005.github.io/tags/payload/"/>
-    
-    <category term="security" scheme="https://drifter2005.github.io/tags/security/"/>
     
   </entry>
   
@@ -275,9 +318,9 @@
     
     <category term="CTF" scheme="https://drifter2005.github.io/tags/CTF/"/>
     
-    <category term="security" scheme="https://drifter2005.github.io/tags/security/"/>
-    
     <category term="algorithm" scheme="https://drifter2005.github.io/tags/algorithm/"/>
+    
+    <category term="security" scheme="https://drifter2005.github.io/tags/security/"/>
     
   </entry>
   
