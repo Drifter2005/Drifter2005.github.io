@@ -6,7 +6,7 @@
   <link href="https://drifter2005.github.io/atom.xml" rel="self"/>
   
   <link href="https://drifter2005.github.io/"/>
-  <updated>2026-08-27T19:33:40.550Z</updated>
+  <updated>2026-08-27T19:34:23.236Z</updated>
   <id>https://drifter2005.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>title</title>
+    <title>穷爸爸 富爸爸</title>
     <link href="https://drifter2005.github.io/2026/08/26/rich%20and%20poor%20dad/"/>
     <id>https://drifter2005.github.io/2026/08/26/rich%20and%20poor%20dad/</id>
     <published>2026-08-26T18:54:11.515Z</published>
-    <updated>2026-08-27T19:33:40.550Z</updated>
+    <updated>2026-08-27T19:34:23.236Z</updated>
     
     
       
@@ -167,7 +167,7 @@
     <link href="https://drifter2005.github.io/2026/07/04/reverse-engineering-first-pass/"/>
     <id>https://drifter2005.github.io/2026/07/04/reverse-engineering-first-pass/</id>
     <published>2026-07-04T13:00:00.000Z</published>
-    <updated>2026-08-28T03:33:52.613Z</updated>
+    <updated>2026-08-28T03:34:45.836Z</updated>
     
     
       
@@ -196,7 +196,7 @@
     <link href="https://drifter2005.github.io/2026/07/04/crypto-rsa-small-exponent/"/>
     <id>https://drifter2005.github.io/2026/07/04/crypto-rsa-small-exponent/</id>
     <published>2026-07-04T12:40:00.000Z</published>
-    <updated>2026-08-28T03:33:52.613Z</updated>
+    <updated>2026-08-28T03:34:45.836Z</updated>
     
     
       
@@ -225,7 +225,7 @@
     <link href="https://drifter2005.github.io/2026/07/04/algorithm-graph-search/"/>
     <id>https://drifter2005.github.io/2026/07/04/algorithm-graph-search/</id>
     <published>2026-07-04T12:10:00.000Z</published>
-    <updated>2026-08-28T03:33:52.612Z</updated>
+    <updated>2026-08-28T03:34:45.836Z</updated>
     
     
       
@@ -297,9 +297,9 @@
     <category term="notes" scheme="https://drifter2005.github.io/categories/notes/"/>
     
     
-    <category term="CTF" scheme="https://drifter2005.github.io/tags/CTF/"/>
-    
     <category term="security" scheme="https://drifter2005.github.io/tags/security/"/>
+    
+    <category term="CTF" scheme="https://drifter2005.github.io/tags/CTF/"/>
     
     <category term="algorithm" scheme="https://drifter2005.github.io/tags/algorithm/"/>
     
