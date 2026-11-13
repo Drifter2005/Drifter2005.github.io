@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Drifter Observatory</title>
+  <title>Drifter Blog</title>
   
-  <subtitle>算法、CTF 与深空工程日志</subtitle>
+  <subtitle>记录学习，也记录生活。</subtitle>
   <link href="https://drifter2005.github.io/atom.xml" rel="self"/>
   
   <link href="https://drifter2005.github.io/"/>
@@ -34,9 +34,9 @@
     <category term="随笔" scheme="https://drifter2005.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
-    <category term="阅读" scheme="https://drifter2005.github.io/tags/%E9%98%85%E8%AF%BB/"/>
-    
     <category term="随笔" scheme="https://drifter2005.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="阅读" scheme="https://drifter2005.github.io/tags/%E9%98%85%E8%AF%BB/"/>
     
   </entry>
   
@@ -167,7 +167,7 @@
     <link href="https://drifter2005.github.io/2026/07/04/reverse-engineering-first-pass/"/>
     <id>https://drifter2005.github.io/2026/07/04/reverse-engineering-first-pass/</id>
     <published>2026-07-04T13:00:00.000Z</published>
-    <updated>2026-08-28T03:34:45.836Z</updated>
+    <updated>2026-11-13T15:03:26.457Z</updated>
     
     
       
@@ -196,7 +196,7 @@
     <link href="https://drifter2005.github.io/2026/07/04/crypto-rsa-small-exponent/"/>
     <id>https://drifter2005.github.io/2026/07/04/crypto-rsa-small-exponent/</id>
     <published>2026-07-04T12:40:00.000Z</published>
-    <updated>2026-08-28T03:34:45.836Z</updated>
+    <updated>2026-11-13T15:03:26.457Z</updated>
     
     
       
@@ -225,7 +225,7 @@
     <link href="https://drifter2005.github.io/2026/07/04/algorithm-graph-search/"/>
     <id>https://drifter2005.github.io/2026/07/04/algorithm-graph-search/</id>
     <published>2026-07-04T12:10:00.000Z</published>
-    <updated>2026-08-28T03:34:45.836Z</updated>
+    <updated>2026-11-13T15:03:26.457Z</updated>
     
     
       
@@ -279,7 +279,7 @@
   </entry>
   
   <entry>
-    <title>观测日志：算法与CTF的星图</title>
+    <title>关于这个博客</title>
     <link href="https://drifter2005.github.io/observatory-manifesto/"/>
     <id>https://drifter2005.github.io/observatory-manifesto/</id>
     <published>2026-05-22T03:30:00.000Z</published>
@@ -288,8 +288,9 @@
     
       
       
-    <summary type="html">&lt;p&gt;这座博客会被整理成一座小型观测站：一边记录算法训练的证明、复杂度与实现细节，一边沉淀 CTF 中的漏洞模型、利用链和复盘方法。&lt;/p&gt;
-&lt;h2 id=&quot;研究方向&quot;&gt;&lt;a href=&quot;#研究方向&quot; class=&quot;headerlink&quot; title=&quot;研究方向&quot;&gt;&lt;/a&gt;研究方</summary>
+    <summary type="html">&lt;p&gt;这里是 Drifter 的个人博客，记录算法学习、CTF 复盘，也放一些阅读笔记和生活随记。&lt;/p&gt;
+&lt;h2 id=&quot;写些什么&quot;&gt;&lt;a href=&quot;#写些什么&quot; class=&quot;headerlink&quot; title=&quot;写些什么&quot;&gt;&lt;/a&gt;写些什么&lt;/h2&gt;&lt;table&gt;
+&lt;th</summary>
       
     
     
@@ -297,9 +298,9 @@
     <category term="notes" scheme="https://drifter2005.github.io/categories/notes/"/>
     
     
-    <category term="security" scheme="https://drifter2005.github.io/tags/security/"/>
-    
     <category term="CTF" scheme="https://drifter2005.github.io/tags/CTF/"/>
+    
+    <category term="security" scheme="https://drifter2005.github.io/tags/security/"/>
     
     <category term="algorithm" scheme="https://drifter2005.github.io/tags/algorithm/"/>
     

@@ -55,15 +55,15 @@ if (!config.serverURL) {
       serverURL: config.serverURL,
       path: normalizePath(window.location.pathname),
       lang: config.lang || 'zh-CN',
-      // 本站恒为深色，用永远命中的选择器让 Waline 始终走暗色
-      dark: 'html',
+      // Match the theme's light reading surface.
+      dark: false,
       pageSize: config.pageSize || 10,
       comment: config.commentCount !== false,
       pageview: config.pageview !== false,
       reaction: config.reaction !== false,
       locale: {
-        placeholder: config.placeholder || '在这里留下你的观测信号',
-        reactionTitle: '读完这篇，留个信号',
+        placeholder: config.placeholder || '留下一点想法吧。',
+        reactionTitle: '读完这篇，留下一点想法',
       },
     };
 

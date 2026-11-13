@@ -3,482 +3,103 @@
 <head>
   <meta charset="utf-8">
   
+  <title>文章归档 · Drifter Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f7f3">
+  <meta name="color-scheme" content="light">
   
-  <title>归档: 2026 | Drifter Observatory</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5, user-scalable=yes">
-  <meta name="theme-color" content="#04050d">
-  <meta name="color-scheme" content="dark">
-  <link rel="canonical" href="https://drifter2005.github.io/archives/2026/">
-  <meta name="format-detection" content="telephone=no">
   <meta name="description" content="Drifter2005 的个人技术博客，记录算法训练、CTF 复盘、密码学与安全工程思考。">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Drifter Observatory">
+<meta property="og:title" content="Drifter Blog">
 <meta property="og:url" content="https://drifter2005.github.io/archives/2026/">
-<meta property="og:site_name" content="Drifter Observatory">
+<meta property="og:site_name" content="Drifter Blog">
 <meta property="og:description" content="Drifter2005 的个人技术博客，记录算法训练、CTF 复盘、密码学与安全工程思考。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Drifter2005">
 <meta property="article:tag" content="algorithm, CTF, cybersecurity, cryptography, reverse engineering, pwn, data structures">
 <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://drifter2005.github.io/archives/2026/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" href="/atom.xml" type="application/atom+xml" title="Drifter Blog">
+  <link rel="stylesheet" href="/css/meadow.css?v=70fe03f499">
   
-    <link rel="alternate" href="/atom.xml" title="Drifter Observatory" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.svg">
-  
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
-  
-  <link rel="stylesheet" href="/css/style.css?v=fe194577e3">
-  
-    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
 <meta name="generator" content="Hexo 8.1.2"></head>
 
-<body class="page-layout-default">
-  <a class="skip-link" href="#content-outer">跳到正文</a>
-  <canvas id="starfield" aria-hidden="true"></canvas>
-  <div class="cursor-halo" aria-hidden="true"></div>
-  <div class="cosmic-background" aria-hidden="true">
-    <span class="cosmic-orbit orbit-alpha"></span>
-    <span class="cosmic-orbit orbit-beta"></span>
-    <span class="cosmic-orbit orbit-gamma"></span>
-  </div>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div class="cosmic-grid" aria-hidden="true"></div>
-  <div class="cosmic-scanline" aria-hidden="true"></div>
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <div class="hero-kicker">ALGORITHM / CTF / SECURITY RESEARCH</div>
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Drifter Observatory</a>
-      </h1>
-      
-        
-        <p id="subtitle-wrap">
-          <a href="/" id="subtitle">在星云、证明与漏洞之间航行</a>
-        </p>
-      
-      <div class="hero-metrics" aria-label="research focus">
-        <span>Graph Theory</span>
-        <span>Crypto</span>
-        <span>Reverse</span>
-        <span>Pwn</span>
-      </div>
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav" aria-label="主导航">
-        <button id="main-nav-toggle" class="nav-icon" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="mobile-nav"><span class="fa fa-bars" aria-hidden="true"></span></button>
-        
-          <a class="main-nav-link" href="/">首页</a>
-        
-          <a class="main-nav-link" href="/algorithm/">算法星图</a>
-        
-          <a class="main-nav-link" href="/ctf/">CTF档案</a>
-        
-          <a class="main-nav-link" href="/archives/">归档</a>
-        
-          <a class="main-nav-link" href="/about/">随记</a>
-        
-      </nav>
-      <nav id="sub-nav" aria-label="外部链接与搜索">
-        
-          
-            <a class="nav-icon" target="_blank" rel="noopener" href="https://github.com/Drifter2005" aria-label="github"><span class="fa fa-github" aria-hidden="true"></span></a>
-          
-        
-        
-        <button class="nav-icon nav-search-btn" type="button" aria-label="搜索" aria-expanded="false"><span class="fa fa-search" aria-hidden="true"></span></button>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form" role="search">
-          <label class="sr-only" for="site-search-input">搜索</label>
-          <input type="search" id="site-search-input" name="q" class="search-form-input" placeholder="搜索">
-          <button type="submit" class="search-form-submit" aria-label="搜索"><span class="fa fa-search" aria-hidden="true"></span></button>
-          <input type="hidden" name="sitesearch" value="https://drifter2005.github.io">
-        </form>
-      </div>
-    </div>
-  </div>
+
+<body class="inner-page " style="--page-image: url('/media/meadow-poster.webp')">
+  <a class="skip-link" href="#journal">跳到正文</a>
+  <div class="page-scenery" aria-hidden="true"></div>
+  <header class="site-header ">
+  <a class="brand" href="/" aria-label="Drifter Blog 首页">
+    <svg class="brand-symbol" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M26 5C13 4 5 11 7 20c1 6 10 9 15 2 4-5 2-11 4-17Z" stroke="currentColor" stroke-width="1.6"/><path d="M6 28 21 12M12 22l-1-8m6 3 6 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    <span>Drifter<span class="brand-label">BLOG</span></span>
+  </a>
+  <nav class="main-nav" aria-label="主导航">
+    
+      <a href="/#journal" >文章</a>
+    
+      <a href="/algorithm/" >算法</a>
+    
+      <a href="/ctf/" >CTF</a>
+    
+      <a href="/about/" >随记</a>
+    
+      <a href="/archives/" aria-current="page">归档</a>
+    
+  </nav>
+  <button class="header-search icon-button" data-open-search type="button" aria-label="搜索文章"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.7" cy="10.7" r="7"/><path d="m16 16 5 5"/></svg>
+</button>
 </header>
 
-      <div class="outer" id="content-outer">
-        <section id="main">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2026" class="archive-year">2026</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/08/26/rich%20and%20poor%20dad/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-08-26T18:54:11.515Z" itemprop="datePublished">8月 27</time>
-</a>
-      
+  <main id="journal" class="site-main" tabindex="-1">
+    <div class="content-layout ">
+      <section class="main-column"><header class="section-heading"><div><p class="eyebrow">THE ARCHIVE</p><h1>文章归档<span class="heading-dot">.</span></h1><p class="section-description">把走过的日子，留在文字里。</p></div></header>
+<div class="archive-list"><h2 class="archive-year">2026</h2><a class="archive-row" href="/2026/08/26/rich%20and%20poor%20dad/"><time datetime="2026-08-26T18:54:11.515Z">08.27</time><span>穷爸爸 富爸爸</span><span aria-hidden="true">↗</span></a><a class="archive-row" href="/2026/08/08/island-economy/"><time datetime="2026-08-08T12:31:36.819Z">08.08</time><span>小岛经济学</span><span aria-hidden="true">↗</span></a><a class="archive-row" href="/2026/07/26/long-cycle/"><time datetime="2026-07-26T06:00:25.649Z">07.26</time><span>大周期-不确定时代的确定性法则</span><span aria-hidden="true">↗</span></a><a class="archive-row" href="/2026/07/25/algorithm/"><time datetime="2026-07-25T02:52:49.970Z">07.25</time><span>动态规划</span><span aria-hidden="true">↗</span></a><a class="archive-row" href="/2026/07/24/web-bf/"><time datetime="2026-07-24T00:37:42.322Z">07.24</time><span>哈希绕过+变量覆盖</span><span aria-hidden="true">↗</span></a><a class="archive-row" href="/2026/07/23/suanfati/"><time datetime="2026-07-23T02:29:17.939Z">07.23</time><span>python算法题记录</span><span aria-hidden="true">↗</span></a><a class="archive-row" href="/2026/07/04/reverse-engineering-first-pass/"><time datetime="2026-07-04T13:00:00.000Z">07.04</time><span>Reverse入门巡天：从字符串到控制流</span><span aria-hidden="true">↗</span></a><a class="archive-row" href="/2026/07/04/crypto-rsa-small-exponent/"><time datetime="2026-07-04T12:40:00.000Z">07.04</time><span>Crypto观测笔记：RSA小指数与广播攻击</span><span aria-hidden="true">↗</span></a><a class="archive-row" href="/2026/07/04/algorithm-graph-search/"><time datetime="2026-07-04T12:10:00.000Z">07.04</time><span>图搜索观测笔记：BFS、Dijkstra 与状态空间</span><span aria-hidden="true">↗</span></a><a class="archive-row" href="/2026/07/04/ctf-web-sql-injection/"><time datetime="2026-07-04T04:25:00.000Z">07.04</time><span>CTF Web复盘：SQL注入从异常回显到稳定利用</span><span aria-hidden="true">↗</span></a></div><nav class="pagination" aria-label="文章分页"><span class="page-number current">1</span><a class="page-number" href="/archives/2026/page/2/">2</a><a class="extend next" rel="next" href="/archives/2026/page/2/">下一页 →</a></nav>
 
-
-  
-    <h2 itemprop="name">
-      <a class="archive-article-title" href="/2026/08/26/rich%20and%20poor%20dad/">穷爸爸 富爸爸</a>
-    </h2>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/08/08/island-economy/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-08-08T12:31:36.819Z" itemprop="datePublished">8月 8</time>
-</a>
-      
-
-
-  
-    <h2 itemprop="name">
-      <a class="archive-article-title" href="/2026/08/08/island-economy/">小岛经济学</a>
-    </h2>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/07/26/long-cycle/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-07-26T06:00:25.649Z" itemprop="datePublished">7月 26</time>
-</a>
-      
-
-
-  
-    <h2 itemprop="name">
-      <a class="archive-article-title" href="/2026/07/26/long-cycle/">大周期-不确定时代的确定性法则</a>
-    </h2>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/07/25/algorithm/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-07-25T02:52:49.970Z" itemprop="datePublished">7月 25</time>
-</a>
-      
-
-
-  
-    <h2 itemprop="name">
-      <a class="archive-article-title" href="/2026/07/25/algorithm/">动态规划</a>
-    </h2>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/07/24/web-bf/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-07-24T00:37:42.322Z" itemprop="datePublished">7月 24</time>
-</a>
-      
-
-
-  
-    <h2 itemprop="name">
-      <a class="archive-article-title" href="/2026/07/24/web-bf/">哈希绕过+变量覆盖</a>
-    </h2>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/07/23/suanfati/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-07-23T02:29:17.939Z" itemprop="datePublished">7月 23</time>
-</a>
-      
-
-
-  
-    <h2 itemprop="name">
-      <a class="archive-article-title" href="/2026/07/23/suanfati/">python算法题记录</a>
-    </h2>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/07/04/reverse-engineering-first-pass/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-07-04T13:00:00.000Z" itemprop="datePublished">7月 4</time>
-</a>
-      
-
-
-  
-    <h2 itemprop="name">
-      <a class="archive-article-title" href="/2026/07/04/reverse-engineering-first-pass/">Reverse入门巡天：从字符串到控制流</a>
-    </h2>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/07/04/crypto-rsa-small-exponent/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-07-04T12:40:00.000Z" itemprop="datePublished">7月 4</time>
-</a>
-      
-
-
-  
-    <h2 itemprop="name">
-      <a class="archive-article-title" href="/2026/07/04/crypto-rsa-small-exponent/">Crypto观测笔记：RSA小指数与广播攻击</a>
-    </h2>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/07/04/algorithm-graph-search/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-07-04T12:10:00.000Z" itemprop="datePublished">7月 4</time>
-</a>
-      
-
-
-  
-    <h2 itemprop="name">
-      <a class="archive-article-title" href="/2026/07/04/algorithm-graph-search/">图搜索观测笔记：BFS、Dijkstra 与状态空间</a>
-    </h2>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2026/07/04/ctf-web-sql-injection/" class="archive-article-date">
-  <time class="dt-published" datetime="2026-07-04T04:25:00.000Z" itemprop="datePublished">7月 4</time>
-</a>
-      
-
-
-  
-    <h2 itemprop="name">
-      <a class="archive-article-title" href="/2026/07/04/ctf-web-sql-injection/">CTF Web复盘：SQL注入从异常回显到稳定利用</a>
-    </h2>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2026/page/2/">2</a><a class="extend next" rel="next" href="/archives/2026/page/2/">下一页 &raquo;</a>
-  </nav>
 
 </section>
-        
-          <aside id="sidebar">
-  <div class="sidebar-command">
-    <span class="sidebar-command-kicker">SIDE CONSOLE</span>
-    <strong>快速导航</strong>
-    <p>按分类、标签和时间线检索算法与 CTF 观测记录。</p>
-  </div>
-  
-    
-  <div class="widget-wrap widget-categories">
-    <h3 class="widget-title"><span>Categories</span>分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF/">CTF</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/notes/">notes</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a><span class="category-list-count">2</span></li></ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap widget-tags">
-    <h3 class="widget-title"><span>Tags</span>标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BFS/" rel="tag">BFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/" rel="tag">CTF</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Crypto/" rel="tag">Crypto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dijkstra/" rel="tag">Dijkstra</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RSA/" rel="tag">RSA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reverse/" rel="tag">Reverse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLi/" rel="tag">SQLi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/binary/" rel="tag">binary</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debugging/" rel="tag">debugging</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graph/" rel="tag">graph</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/number-theory/" rel="tag">number-theory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/payload/" rel="tag">payload</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/" rel="tag">security</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shortest-path/" rel="tag">shortest-path</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%87%91%E8%9E%8D/" rel="tag">金融</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%85%E8%AF%BB/" rel="tag">阅读</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">2</span></li></ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap widget-tagcloud">
-    <h3 class="widget-title"><span>Signal Cloud</span>标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/BFS/" style="font-size: 13px;">BFS</a> <a href="/tags/CTF/" style="font-size: 21px;">CTF</a> <a href="/tags/Crypto/" style="font-size: 13px;">Crypto</a> <a href="/tags/Dijkstra/" style="font-size: 13px;">Dijkstra</a> <a href="/tags/RSA/" style="font-size: 13px;">RSA</a> <a href="/tags/Reverse/" style="font-size: 13px;">Reverse</a> <a href="/tags/SQLi/" style="font-size: 13px;">SQLi</a> <a href="/tags/Web/" style="font-size: 13px;">Web</a> <a href="/tags/algorithm/" style="font-size: 17px;">algorithm</a> <a href="/tags/binary/" style="font-size: 13px;">binary</a> <a href="/tags/debugging/" style="font-size: 13px;">debugging</a> <a href="/tags/graph/" style="font-size: 13px;">graph</a> <a href="/tags/number-theory/" style="font-size: 13px;">number-theory</a> <a href="/tags/payload/" style="font-size: 13px;">payload</a> <a href="/tags/python/" style="font-size: 17px;">python</a> <a href="/tags/security/" style="font-size: 17px;">security</a> <a href="/tags/shortest-path/" style="font-size: 13px;">shortest-path</a> <a href="/tags/web/" style="font-size: 13px;">web</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 13px;">动态规划</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 13px;">笔记</a> <a href="/tags/%E9%87%91%E8%9E%8D/" style="font-size: 13px;">金融</a> <a href="/tags/%E9%98%85%E8%AF%BB/" style="font-size: 17px;">阅读</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 17px;">随笔</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/08/">八月 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/07/">七月 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">五月 2026</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap widget-recent">
-    <h3 class="widget-title"><span>Recent</span>最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2026/08/26/rich%20and%20poor%20dad/">穷爸爸 富爸爸</a>
-          </li>
-        
-          <li>
-            <a href="/2026/08/08/island-economy/">小岛经济学</a>
-          </li>
-        
-          <li>
-            <a href="/2026/07/26/long-cycle/">大周期-不确定时代的确定性法则</a>
-          </li>
-        
-          <li>
-            <a href="/2026/07/25/algorithm/">动态规划</a>
-          </li>
-        
-          <li>
-            <a href="/2026/07/24/web-bf/">哈希绕过+变量覆盖</a>
-          </li>
-        
-          <li>
-            <a href="/2026/07/23/suanfati/">python算法题记录</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
+      <aside class="blog-sidebar" aria-label="博客信息">
+  <section class="profile-card"><div class="profile-avatar" aria-hidden="true">D<span>✳</span></div><p class="eyebrow">HELLO, I'M</p><h2>Drifter<span class="heading-dot">.</span></h2><p>一个慢慢学习、认真生活的人。<br>在这里，留下一些走过的痕迹。</p><div class="profile-count"><a href="/archives/"><strong>11</strong><span>文章</span></a><span class="profile-count-separator"></span><div><strong>23</strong><span>标签</span></div><a href="/atom.xml"><strong>RSS</strong><span>订阅</span></a></div><a class="profile-github" href="https://github.com/Drifter2005" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></section>
+  <section class="sidebar-section"><h3>随手翻翻</h3><a class="side-topic" href="/algorithm/"><span>01</span> 算法笔记 <span>↗</span></a><a class="side-topic" href="/ctf/"><span>02</span> CTF 记录 <span>↗</span></a><a class="side-topic" href="/about/"><span>03</span> 阅读与随记 <span>↗</span></a></section>
+  <section class="sidebar-section"><h3>一些关键词</h3><div class="tag-cloud"><a href="/tags/CTF/">CTF</a><a href="/tags/python/">python</a><a href="/tags/security/">security</a><a href="/tags/algorithm/">algorithm</a><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a><a href="/tags/%E9%98%85%E8%AF%BB/">阅读</a><a href="/tags/BFS/">BFS</a><a href="/tags/Dijkstra/">Dijkstra</a><a href="/tags/graph/">graph</a><a href="/tags/shortest-path/">shortest-path</a><a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a><a href="/tags/Crypto/">Crypto</a><a href="/tags/RSA/">RSA</a><a href="/tags/number-theory/">number-theory</a></div></section>
+  <p class="sidebar-note">不必急着抵达。<br>记录本身，就有意义。</p>
 </aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2026 Drifter2005<br>
-      Built with <a href="https://hexo.io/" target="_blank">Hexo</a>. Calibrated for algorithms, CTF writeups, and long-range curiosity.
-    </div>
-  </div>
-</footer>
 
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">首页</a>
-  
-    <a href="/algorithm/" class="mobile-nav-link">算法星图</a>
-  
-    <a href="/ctf/" class="mobile-nav-link">CTF档案</a>
-  
-    <a href="/archives/" class="mobile-nav-link">归档</a>
-  
-    <a href="/about/" class="mobile-nav-link">随记</a>
-  
-</nav>
-    
+  </main>
+  <footer class="site-footer"><p>© 2026 Drifter2005<span>·</span>记录学习，也记录生活。</p><p>Made with <a href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a><span>·</span><a href="/atom.xml">RSS</a></p></footer>
 
-<!-- 音乐播放器容器（id 不用 "aplayer"：那会在 window 上创建同名全局引用，与脚本判断冲突） -->
-<div id="music-player-host"></div>
+  <div class="glass-dock" id="glass-dock" role="group" aria-label="快捷工具，长按可拖动">
+  <button class="dock-mobile-toggle dock-button" id="dock-toggle" type="button" aria-label="展开快捷工具" aria-expanded="false" aria-controls="dock-actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14"/></svg>
+</button>
+  <nav class="dock-actions" id="dock-actions" aria-label="快捷导航">
+    <a class="dock-button" href="/" aria-label="引导首页" data-tip="首页"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></svg>
+</a>
+    <a class="dock-button" href="/archives/" aria-label="文章归档" data-tip="归档"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v16M12 5C8 2 3 3 3 3v16s5-1 9 2c4-3 9-2 9-2V3s-5-1-9 2Z"/></svg>
+</a>
+    <button class="dock-button" type="button" data-open-search aria-label="搜索文章" data-tip="搜索"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.7" cy="10.7" r="7"/><path d="m16 16 5 5"/></svg>
+</button>
+    <button class="dock-button" type="button" id="music-toggle" aria-label="打开音乐" aria-controls="music-panel" aria-expanded="false" data-tip="音乐"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l11-2v13"/><ellipse cx="6" cy="18" rx="3" ry="3"/><ellipse cx="17" cy="16" rx="3" ry="3"/></svg>
+</button>
+    <button class="dock-button" type="button" data-back-top aria-label="回到顶部" data-tip="顶部"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7M12 5v15"/></svg>
+</button>
+    <button class="dock-button dock-grip" id="dock-grip" type="button" aria-label="长按拖动工具条；也可按方向键移动" data-tip="长按拖动"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="6" r=".8"/><circle cx="15" cy="6" r=".8"/><circle cx="9" cy="12" r=".8"/><circle cx="15" cy="12" r=".8"/><circle cx="9" cy="18" r=".8"/><circle cx="15" cy="18" r=".8"/></svg>
+</button>
+  </nav>
+</div>
+<div id="live-status" class="sr-only" role="status" aria-live="polite"></div>
+<dialog id="search-dialog" class="search-dialog"><div class="dialog-heading"><h2>找一篇文章</h2><button class="icon-button" data-close-search type="button" aria-label="关闭搜索"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg>
+</button></div><label class="search-field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.7" cy="10.7" r="7"/><path d="m16 16 5 5"/></svg>
+<input id="search-input" type="search" placeholder="标题、内容，或一个关键词…" autocomplete="off" aria-label="搜索标题、内容与标签"></label><p class="search-status" id="search-status" role="status">输入关键词，找回一段记录。</p><div id="search-results" class="search-results"></div></dialog>
+<section class="music-panel" id="music-panel" aria-label="音乐播放器" hidden><div class="music-heading"><span class="eyebrow">A LITTLE MUSIC</span><button id="music-close" class="icon-button" type="button" aria-label="关闭音乐面板"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg>
+</button></div><p class="music-title" id="music-title">一格格</p><p class="music-artist" id="music-artist">卫兰</p><div class="music-controls"><button id="music-prev" type="button" aria-label="上一首">←</button><button id="music-play" type="button" aria-label="播放音乐"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 4 13 8-13 8Z"/></svg>
+</button><button id="music-next" type="button" aria-label="下一首">→</button></div><label class="music-progress-label"><span class="sr-only">播放进度</span><input id="music-progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="播放进度"></label><div class="music-times"><span id="music-elapsed">0:00</span><span id="music-duration">0:00</span></div><label class="music-volume">音量<input id="music-volume" type="range" min="0" max="1" value="0.45" step="0.05"></label><p id="music-status" role="status"></p><audio id="blog-audio" preload="none"></audio></section>
 
-
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
-<!-- APlayer 音乐播放器脚本 -->
-
-<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
-
-
-
-  
-  <script defer src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-<script src="/js/script.js?v=d1f87a3c68"></script>
-<script src="/js/likes.js?v=203bd075f5"></script>
-<script src="/js/music-player.js?v=a53105608f"></script>
-<script src="/js/cosmic.js?v=62bf6fac89"></script>
-<script src="/js/pjax.js?v=b47d2e2801"></script>
+  <script id="meadow-config" type="application/json">{"root":"/","search":"/search.json","musicRoot":"/music/"}</script>
+<script defer src="/js/meadow.js?v=fac32ac2f1"></script>
+<script defer src="/js/likes.js?v=203bd075f5"></script>
 
 
-
-
-
-  </div>
 </body>
 </html>
